@@ -1,6 +1,4 @@
-"""
-Componente de rodapé da aplicação.
-"""
+"""Componente de rodapé da aplicação."""
 
 import streamlit as st
 
@@ -9,6 +7,7 @@ def render_footer():
     """Renderiza a linha divisória e o texto informativo do rodapé."""
     st.markdown("---")
     st.caption(
-        ":material/bolt: **Carros Elétricos no Brasil** • Versão de Base • "
-        "Dados com valores estimados de tabela e autonomia homologada Inmetro (PBEV)."
+        ":material/verified: **Carros Elétricos e Híbridos no Brasil** • "
+        "Dados oficiais extraídos diretamente do Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro) • "
+        "Pipeline de dados automatizado com download, extração tabular e padronização contínua."
     )

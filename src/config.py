@@ -1,6 +1,4 @@
-"""
-Módulo de configurações gerais e estilização da interface.
-"""
+"""Módulo de configurações gerais e estilização da interface."""
 
 from pathlib import Path
 import streamlit as st
@@ -37,19 +35,34 @@ PLOTLY_CONFIG_PT_BR = {
     "displaylogo": False,
 }
 
-# Paleta padronizada por categoria para coerência visual entre todos os gráficos
+# Paleta padronizada por categorias oficiais do Inmetro (PBEV)
 CATEGORY_COLOR_MAP = {
-    "Subcompacto": "#636EFA",
-    "Hatchback": "#EF553B",
-    "SUV": "#00CC96",
-    "Sedan": "#AB63FA",
+    "Sub Compacto": "#636EFA",
+    "Compacto": "#EF553B",
+    "Médio": "#00CC96",
+    "Grande": "#AB63FA",
+    "Extra Grande": "#FFA15A",
+    "Utilitário Esportivo Compacto": "#19D3F3",
+    "Utilitário Esportivo Grande": "#FF6692",
+    "Fora de Estrada Grande": "#B6E880",
+    "Esportivo": "#FF97FF",
+    "Comercial": "#FECB52",
+    "Picape": "#8c564b",
+    "Minivan": "#17becf",
+}
+
+# Paleta padronizada por tipo de propulsão
+PROPULSION_COLOR_MAP = {
+    "100% Elétrico": "#00CC96",
+    "Híbrido Plug-in": "#636EFA",
+    "Híbrido": "#FFA15A",
 }
 
 
 def setup_page_and_styles():
     """Configura metadados da página, layout e estilos CSS customizados."""
     st.set_page_config(
-        page_title="Carros Elétricos no Brasil",
+        page_title="Carros 100% Elétricos no Brasil (Inmetro)",
         page_icon="⚡",
         layout="wide",
         initial_sidebar_state="expanded",

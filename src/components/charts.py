@@ -1,50 +1,56 @@
-"""
-Componente de geração e renderização dos gráficos analíticos Plotly.
-"""
+"""Componente de geração e renderização dos gráficos analíticos Plotly para veículos 100% elétricos."""
 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
 
 from src.config import CATEGORY_COLOR_MAP, PLOTLY_CONFIG_PT_BR
 
 
 def render_scatter_chart(df_filtrado: pd.DataFrame):
-    """Renderiza o gráfico de dispersão: Preço vs. Autonomia."""
+    """Renderiza o gráfico de dispersão: Autonomia Oficial (km) vs. Consumo Energético (MJ/km)."""
     st.subheader(
-        "Relação Preço vs. Autonomia (Inmetro)",
+        "Autonomia Oficial vs. Consumo Energético (MJ/km)",
         help=(
-            "Analisa a eficiência de custo por alcance: o eixo horizontal mostra a autonomia oficial (Inmetro) "
-            "e o vertical o preço estimado de tabela. O tamanho de cada bolha representa a potência do motor (cv). "
-            "Passe o mouse sobre os veículos para visualizar a ficha técnica detalhada."
+            "Correlação técnica entre a autonomia oficial homologada pelo Inmetro e o consumo energético oficial em MJ/km. "
+            "Quanto mais alto e mais à esquerda estiver o veículo elétrico no gráfico, maior o alcance com menor consumo de energia. "
+            "O tamanho da bolha reflete a eficiência equivalente em km/l na cidade."
         ),
     )
 
+    df_plot = df_filtrado.copy()
+    if df_plot.empty:
+        st.info("Nenhum veículo elétrico encontrado com os filtros selecionados.")
+        return
+
+    # Garante tamanho positivo para as bolhas
+    df_plot["tamanho_bolha"] = df_plot["km_l_equivalente_cidade"].fillna(20.0).clip(lower=10.0, upper=70.0)
+
     fig_scatter = px.scatter(
-        df_filtrado,
-        x="autonomia_inmetro_km",
-        y="preco_estimado_brl",
+        df_plot,
+        x="consumo_energetico_mj_km",
+        y="autonomia_inmetro_km",
         color="categoria",
         color_discrete_map=CATEGORY_COLOR_MAP,
-        size="potencia_cv",
+        size="tamanho_bolha",
         custom_data=[
             "marca",
             "modelo",
             "versao",
             "categoria",
-            "potencia_cv",
-            "capacidade_bateria_kwh",
-            "tempo_recarga_rapida_min",
-            "tipo_conector",
-            "tracao",
+            "consumo_energetico_mj_km",
+            "autonomia_inmetro_km",
+            "km_l_equivalente_cidade",
+            "km_l_equivalente_estrada",
+            "selo_conpet",
+            "classificacao_geral",
         ],
         labels={
-            "autonomia_inmetro_km": "Autonomia Inmetro",
-            "preco_estimado_brl": "Preço Estimado",
-            "categoria": "Categoria",
+            "consumo_energetico_mj_km": "Consumo Energético (MJ/km)",
+            "autonomia_inmetro_km": "Autonomia Oficial (km)",
+            "categoria": "Categoria Inmetro",
         },
-        title="Preço vs. Autonomia (Tamanho da bolha = Potência)",
+        title="Eficiência Energética: Autonomia Inmetro vs. Consumo (MJ/km)",
         template="plotly_white",
     )
 
@@ -54,12 +60,10 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
             "<b>Versão:</b> %{customdata[2]}<br>"
             "<b>Categoria:</b> %{customdata[3]}<br>"
             "<br>"
-            "<b>Preço Estimado:</b> R$ %{y:,.2f}<br>"
-            "<b>Autonomia Inmetro:</b> %{x} km<br>"
-            "<b>Potência:</b> %{customdata[4]} cv<br>"
-            "<b>Bateria:</b> %{customdata[5]} kWh<br>"
-            "<b>Recarga Rápida:</b> %{customdata[6]} min<br>"
-            "<b>Conector:</b> %{customdata[7]} | <b>Tração:</b> %{customdata[8]}"
+            "<b>Autonomia Inmetro:</b> %{customdata[5]:.0f} km<br>"
+            "<b>Consumo Energético:</b> %{customdata[4]:.2f} MJ/km<br>"
+            "<b>Equivalente Cidade:</b> %{customdata[6]:.1f} km/l | <b>Estrada:</b> %{customdata[7]:.1f} km/l<br>"
+            "<b>Classificação PBE:</b> %{customdata[9]} | <b>Selo CONPET:</b> %{customdata[8]}"
             "<extra></extra>"
         )
     )
@@ -74,18 +78,17 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
             bordercolor="#cbd5e1",
         ),
         xaxis=dict(
-            title="Autonomia Homologada Inmetro",
-            ticksuffix=" km",
+            title="Consumo Energético Oficial (MJ/km) - Quanto menor, mais eficiente",
+            ticksuffix=" MJ/km",
             gridcolor="#f1f5f9",
         ),
         yaxis=dict(
-            title="Preço Estimado",
-            tickprefix="R$ ",
-            tickformat=",.0f",
+            title="Autonomia Homologada Inmetro (km)",
+            ticksuffix=" km",
             gridcolor="#f1f5f9",
         ),
         legend=dict(
-            title_text="Categoria",
+            title_text="Categoria Inmetro",
             orientation="h",
             yanchor="bottom",
             y=1.02,
@@ -98,24 +101,21 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
 
 
 def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
-    """Renderiza o gráfico de barras: Quantidade de modelos por fabricante com cores por categoria."""
+    """Renderiza o gráfico de barras: Quantidade de modelos elétricos por fabricante com cores por categoria."""
     st.subheader(
-        "Modelos por Marca",
+        "Modelos Elétricos por Fabricante",
         help=(
-            "Ranking de fabricantes pela quantidade total de modelos 100% elétricos comercializados no Brasil. "
-            "As cores dos segmentos correspondem às categorias dos veículos (Subcompacto, Hatchback, SUV e Sedan), "
-            "e os números na ponta de cada barra indicam o total de veículos por marca."
+            "Ranking de montadoras pela quantidade de veículos 100% elétricos homologados no PBEV. "
+            "As cores identificam as categorias oficiais do Inmetro."
         ),
     )
 
-    # Segmentação por marca e categoria para correlação de cores
     modelos_por_marca_cat = (
         df_filtrado.groupby(["marca", "categoria"])
         .size()
         .reset_index(name="quantidade")
     )
 
-    # Ordenação das marcas pelo total de veículos em ordem crescente
     total_por_marca = (
         df_filtrado.groupby("marca")
         .size()
@@ -132,20 +132,19 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
         color_discrete_map=CATEGORY_COLOR_MAP,
         orientation="h",
         labels={"quantidade": "Qtd. de Modelos", "marca": "Fabricante", "categoria": "Categoria"},
-        title="Quantidade de Modelos por Fabricante",
+        title="Quantidade de Versões Elétricas por Montadora",
         template="plotly_white",
         category_orders={"marca": ordem_marcas},
     )
 
     fig_bar.update_traces(
         cliponaxis=False,
-        hovertemplate="<b>%{y}</b><br>Categoria: <b>%{fullData.name}</b><br>Modelos nesta categoria: <b>%{x}</b><extra></extra>",
+        hovertemplate="<b>%{y}</b><br>Categoria: <b>%{fullData.name}</b><br>Modelos: <b>%{x}</b><extra></extra>",
     )
 
-    # Rótulo com o total geral fixado na ponta de cada barra
     for marca, total in total_por_marca.items():
         fig_bar.add_annotation(
-            x=total + 0.12,
+            x=total + 0.15,
             y=marca,
             text=str(total),
             showarrow=False,
@@ -157,7 +156,7 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
     fig_bar.update_layout(
         height=altura,
         showlegend=False,
-        margin=dict(l=10, r=35, t=40, b=30),
+        margin=dict(l=10, r=40, t=40, b=30),
         hoverlabel=dict(
             bgcolor="white",
             font_size=12,
@@ -165,9 +164,9 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
             bordercolor="#cbd5e1",
         ),
         xaxis=dict(
-            title="Número de Modelos",
+            title="Número de Modelos / Versões",
             dtick=1,
-            range=[0, max_qtd + 0.8],
+            range=[0, max_qtd + 1.2],
             gridcolor="#f1f5f9",
         ),
         yaxis=dict(title="", tickfont=dict(size=12, color="#0f172a")),
@@ -177,28 +176,28 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
 
 
 def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
-    """Renderiza o gráfico de distribuição de preços por categoria com estilo nativo e rótulos em português."""
+    """Renderiza o box plot de distribuição de autonomia por categoria oficial."""
     st.subheader(
-        "Faixa de Preço por Categoria",
+        "Distribuição de Autonomia por Categoria",
         help=(
-            "Distribuição e amplitude de preços por carroceria (Subcompacto, Hatchback, SUV e Sedan). "
-            "A caixa representa o intervalo interquartil (Q1 a Q3), a linha central indica a mediana, "
-            "e as hastes mostram os limites inferior e superior de preços."
+            "Dispersão do alcance homologado entre as categorias oficiais de veículos elétricos no PBEV. "
+            "A caixa representa o intervalo interquartil (Q1 a Q3), a linha central a mediana, "
+            "e os pontos isolados os valores atípicos."
         ),
     )
 
     fig_box = px.box(
         df_filtrado,
         x="categoria",
-        y="preco_estimado_brl",
+        y="autonomia_inmetro_km",
         color="categoria",
         color_discrete_map=CATEGORY_COLOR_MAP,
         points="outliers",
         labels={
-            "categoria": "Categoria",
-            "preco_estimado_brl": "Preço Estimado",
+            "categoria": "Categoria Inmetro",
+            "autonomia_inmetro_km": "Autonomia Oficial (km)",
         },
-        title="Distribuição de Preços por Categoria",
+        title="Autonomia Inmetro por Categoria de Carroceria",
         template="plotly_white",
     )
 
@@ -207,9 +206,8 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
         showlegend=False,
         separators=",.",
         yaxis=dict(
-            title="Preço Estimado",
-            tickprefix="R$ ",
-            tickformat=",.0f",
+            title="Autonomia Homologada (km)",
+            ticksuffix=" km",
             gridcolor="#f1f5f9",
         ),
         xaxis=dict(title=""),
@@ -225,16 +223,90 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
 
 
 def render_charts(df_filtrado: pd.DataFrame):
-    """Renderiza a seção completa de visualizações analíticas em gráficos."""
+    """Renderiza a aba principal de gráficos de autonomia e eficiência."""
     render_scatter_chart(df_filtrado)
 
-    # Gráficos complementares em 2 colunas com altura harmonizada
     col_g1, col_g2 = st.columns(2)
     qtd_marcas = df_filtrado["marca"].nunique()
-    altura_graficos = max(420, qtd_marcas * 32 + 60)
+    altura_graficos = max(450, qtd_marcas * 26 + 80)
 
     with col_g1:
         render_bar_chart(df_filtrado, altura_graficos)
 
     with col_g2:
         render_box_chart(df_filtrado, altura_graficos)
+
+
+def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
+    """Renderiza a aba analítica com Selo CONPET, Classificações PBE e Rendimento Cidade vs. Estrada."""
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader("Selo CONPET de Eficiência Energética", help="Proporção de veículos elétricos que alcançaram a distinção máxima do Selo CONPET.")
+        conpet_counts = df_filtrado["selo_conpet"].value_counts().reset_index()
+        conpet_counts.columns = ["Selo CONPET", "Quantidade"]
+        fig_donut = px.pie(
+            conpet_counts,
+            names="Selo CONPET",
+            values="Quantidade",
+            hole=0.55,
+            color="Selo CONPET",
+            color_discrete_map={"Sim": "#00CC96", "Não": "#cbd5e1"},
+            title="Proporção com Selo CONPET",
+            template="plotly_white",
+        )
+        fig_donut.update_traces(textposition="inside", textinfo="percent+label")
+        fig_donut.update_layout(height=380, showlegend=True)
+        st.plotly_chart(fig_donut, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+
+    with col2:
+        st.subheader("Classificação Geral PBE (Nota A-E)", help="Distribuição das notas gerais de eficiência energética conferidas pelo Inmetro.")
+        pbe_counts = df_filtrado["classificacao_geral"].replace("-", "Sem Nota").value_counts().reset_index()
+        pbe_counts.columns = ["Nota PBE", "Quantidade"]
+        fig_pbe = px.bar(
+            pbe_counts,
+            x="Nota PBE",
+            y="Quantidade",
+            color="Nota PBE",
+            color_discrete_map={"A": "#00CC96", "B": "#636EFA", "C": "#FFA15A", "D": "#FF6692", "E": "#EF553B"},
+            title="Distribuição das Classificações PBE (Geral)",
+            template="plotly_white",
+        )
+        fig_pbe.update_layout(height=380, showlegend=False, xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]))
+        st.plotly_chart(fig_pbe, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+
+    # Gráfico de Rendimento Equivalente: Cidade vs Estrada
+    st.subheader(
+        "Rendimento Equivalente: Cidade vs. Estrada (km/l)",
+        help="Comparativo entre o rendimento equivalente urbano e rodoviário. Em veículos elétricos, o consumo urbano costuma ser superior devido à regeneração em frenagens.",
+    )
+    fig_equiv = px.scatter(
+        df_filtrado,
+        x="km_l_equivalente_estrada",
+        y="km_l_equivalente_cidade",
+        color="categoria",
+        color_discrete_map=CATEGORY_COLOR_MAP,
+        size="autonomia_inmetro_km",
+        custom_data=["marca", "modelo", "versao", "categoria", "km_l_equivalente_cidade", "km_l_equivalente_estrada", "autonomia_inmetro_km"],
+        labels={
+            "km_l_equivalente_estrada": "Equivalente Estrada (km/l)",
+            "km_l_equivalente_cidade": "Equivalente Cidade (km/l)",
+            "categoria": "Categoria Inmetro",
+        },
+        title="Rendimento Equivalente Urbano vs. Rodoviário (Tamanho da Bolha = Autonomia)",
+        template="plotly_white",
+    )
+    fig_equiv.update_traces(
+        hovertemplate=(
+            "<b>%{customdata[0]} %{customdata[1]}</b><br>"
+            "<b>Versão:</b> %{customdata[2]}<br>"
+            "<b>Categoria:</b> %{customdata[3]}<br>"
+            "<br>"
+            "<b>Equivalente Cidade:</b> %{customdata[4]:.1f} km/l<br>"
+            "<b>Equivalente Estrada:</b> %{customdata[5]:.1f} km/l<br>"
+            "<b>Autonomia:</b> %{customdata[6]:.0f} km"
+            "<extra></extra>"
+        )
+    )
+    fig_equiv.update_layout(height=450, separators=",.")
+    st.plotly_chart(fig_equiv, width="stretch", config=PLOTLY_CONFIG_PT_BR)
