@@ -1,6 +1,6 @@
 # Guia de Desenvolvimento Local
 
-Este guia orienta qualquer desenvolvedor ou colaborador da equipe a configurar o ambiente e executar o projeto **Carros Elétricos no Brasil** localmente.
+Este guia orienta qualquer desenvolvedor ou colaborador da equipe a configurar o ambiente e executar o projeto **Carros Elétricos e Híbridos no Brasil** localmente.
 
 ---
 
@@ -46,14 +46,12 @@ O [uv](https://github.com/astral-sh/uv) é um gerenciador de pacotes e ambientes
 #### 2. Criar o ambiente virtual e instalar dependências
 
 ```bash
-# Cria o ambiente virtual (.venv) usando Python 3.12 ou a versão disponível
+# Cria o ambiente virtual (.venv) usando Python 3.12
 uv venv
 
 # Instala as dependências a partir do requirements.txt
 uv pip install -r requirements.txt
 ```
-
-> **Dica**: Se preferir utilizar o `pyproject.toml`, você também pode rodar `uv sync`.
 
 #### 3. Executar o Streamlit com o `uv`
 
@@ -62,12 +60,6 @@ uv run streamlit run app.py
 ```
 
 O dashboard abrirá automaticamente no seu navegador no endereço: `http://localhost:8501`.
-
-> **Dica**: Para confirmar qual Python o `uv` está usando, execute:
-> ```bash
-> uv run which python
-> ```
-> O retorno apontará diretamente para o caminho `.venv/bin/python`.
 
 ---
 
@@ -101,79 +93,92 @@ Caso prefira o fluxo clássico do Python sem instalar ferramentas adicionais:
   .venv\Scripts\activate.bat
   ```
 
-#### 3. Atualizar o pip e instalar as dependências
+#### 3. Instalar dependências e rodar
 
 ```bash
-pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-#### 4. Executar a aplicação Streamlit
-
-```bash
 streamlit run app.py
 ```
 
 ---
 
-## Estrutura de Arquivos
+## Estrutura do Projeto
 
 ```
 carros-eletricos-dashboard/
-├── .gitignore                     # Arquivos e pastas ignorados pelo Git
-├── .python-version                # Versão recomendada (Python 3.12)
-├── pyproject.toml                 # Configuração padrão do projeto para uv/pip
-├── requirements.txt               # Dependências pinadas para fácil instalação via pip
-├── README.md                      # Visão geral do repositório
-├── app.py                         # Executor base / ponto de entrada da aplicação
-│
-├── src/                           # Código-fonte modular da aplicação
-│   ├── config.py                  # Configurações gerais, caminhos e estilos CSS
-│   ├── data.py                    # Carregamento em cache e filtragem de dados
-│   └── components/                # Componentes visuais isolados
-│       ├── sidebar.py             # Filtros interativos na barra lateral
-│       ├── kpis.py                # Cartões de métricas principais
-│       ├── charts.py              # Gráficos analíticos Plotly (dispersão, barras, boxplot)
+├── app.py                         # Ponto de entrada e orquestrador principal do dashboard
+├── src/
+│   ├── config.py                  # Configurações de página, tema, cores e estilos CSS
+│   ├── data.py                    # Carga (@st.cache_data) e filtros interativos
+│   └── components/                # Componentes visuais modulares
+│       ├── sidebar.py             # Filtros interativos na barra lateral (propulsão, marcas, categorias)
+│       ├── kpis.py                # Cartões de métricas (Modelos, Autonomia Média, Consumo MJ/km)
+│       ├── charts.py              # Gráficos Plotly de eficiência, Selo CONPET e classificações PBE
 │       ├── table.py               # Tabela exploratória e exportação CSV
-│       └── footer.py              # Rodapé institucional
-│
+│       └── footer.py              # Rodapé com atribuição ao PBEV / Inmetro
 ├── data/
-│   └── carros_eletricos_brasil.csv # Base de dados de veículos elétricos
+│   └── carros_eletricos_brasil.csv # Base oficial de dados padronizada (380+ veículos)
+├── scripts/                       # Pipeline ETL modular
+│   ├── 01_download_inmetro.py     # Download automatizado do PDF oficial no gov.br/inmetro
+│   ├── 02_extract_raw_tables.py   # Extração tabular com pdfplumber de todas as páginas
+│   ├── 03_process_and_standardize.py # Limpeza, filtros de propulsão e padronização
+│   └── run_pipeline.py            # Orquestrador geral da esteira de dados
 └── docs/
-    └── development_guide.md       # Este guia
+    ├── development_guide.md       # Este guia
+    └── data_update_guide.md       # Procedimento operacional detalhado de atualização
 ```
 
 ---
 
-## Como Atualizar ou Adicionar Dados
+## Como Atualizar a Base de Dados (Pipeline ETL)
 
-A base de dados é mantida no arquivo CSV:
-`data/carros_eletricos_brasil.csv`
+O projeto possui uma esteira 100% automatizada e auditável para baixar a tabela oficial do Inmetro, extrair todas as páginas tabulares e padronizar o CSV final.
 
-Ao adicionar novos veículos, certifique-se de seguir o padrão das colunas:
+```bash
+# Executa a esteira completa (Download -> Extração Tabular -> Padronização)
+uv run python scripts/run_pipeline.py
+
+# Se o PDF já foi baixado previamente:
+uv run python scripts/run_pipeline.py --skip-download
+
+# Executa apenas uma etapa específica:
+uv run python scripts/run_pipeline.py --only process
+```
+
+Consulte o [**Guia de Atualização da Base de Dados**](data_update_guide.md) para detalhes operacionais e arquiteturais completos.
+
+---
+
+## Dicionário de Dados do CSV (`carros_eletricos_brasil.csv`)
+
+O arquivo oficial final contém 18 colunas normatizadas:
 
 | Coluna | Tipo | Exemplo | Descrição |
 |---|---|---|---|
-| `marca` | Texto | `BYD` | Nome da fabricante |
-| `modelo` | Texto | `Dolphin` | Nome comercial do modelo |
-| `versao` | Texto | `GS 180 EV` | Versão do acabamento |
-| `ano_modelo` | Inteiro | `2024` | Ano/Modelo |
-| `categoria` | Texto | `Hatchback` | Carroceria (Hatchback, SUV, Sedan, Subcompacto) |
-| `preco_estimado_brl` | Float | `149800.00` | Preço de tabela aproximado em Reais (R$) |
-| `autonomia_inmetro_km` | Inteiro | `291` | Autonomia oficial aferida pelo Inmetro (PBEV) |
-| `capacidade_bateria_kwh` | Float | `44.9` | Capacidade útil/nominal da bateria em kWh |
-| `potencia_cv` | Inteiro | `95` | Potência máxima do motor em cv |
-| `tempo_recarga_rapida_min`| Inteiro | `30` | Tempo estimado de carga rápida (20% a 80%) |
-| `tipo_conector` | Texto | `CCS2` | Padrão do conector de recarga (ex: CCS2, CHAdeMO) |
-| `tracao` | Texto | `Dianteira` | Tipo de tração (Dianteira, Traseira, Integral) |
-
-Como a função `load_data()` no `app.py` utiliza `@st.cache_data`, após alterar o CSV basta salvar o arquivo e recarregar a página no navegador (pressionar `R` ou clicar em "Rerun").
+| `marca` | Texto | `BYD` | Fabricante / Montadora padronizada |
+| `modelo` | Texto | `Dolphin Mini` | Nome comercial do modelo |
+| `versao` | Texto | `GS 5 EV` | Versão de acabamento |
+| `categoria` | Texto | `Sub Compacto` | Categoria oficial normatizada pelo Inmetro |
+| `propulsao` | Texto | `100% Elétrico` | `100% Elétrico`, `Híbrido Plug-in` ou `Híbrido` |
+| `combustivel` | Texto | `Elétrico` | Combustível utilizado (`Elétrico`, `Gasolina`, `Flex`) |
+| `motor` | Texto | `Elétrico` | Especificação do motor |
+| `cambio` | Texto | `Automática (1 marcha)` | Tipo de transmissão |
+| `autonomia_inmetro_km` | Float | `280.0` | Autonomia elétrica oficial homologada (km) |
+| `consumo_energetico_mj_km` | Float | `0.41` | Consumo energético em Megajoules por km ($MJ/km$) |
+| `km_l_equivalente_cidade` | Float | `58.6` | Rendimento equivalente ou consumo urbano ($km/l$) |
+| `km_l_equivalente_estrada` | Float | `41.9` | Rendimento equivalente ou consumo rodoviário ($km/l$) |
+| `emissao_co2_g_km` | Float | `0.0` | Emissão fóssil direta de $CO_2$ no escapamento ($g/km$) |
+| `classificacao_categoria` | Texto | `A` | Nota de eficiência na categoria (A a E) |
+| `classificacao_geral` | Texto | `A` | Nota de eficiência na classificação geral (A a E) |
+| `selo_conpet` | Texto | `Sim` | Premiação com o Selo CONPET de Alta Eficiência |
+| `ar_condicionado` | Texto | `Sim` | Presença de ar-condicionado de série |
+| `direcao` | Texto | `Elétrica` | Tipo de assistência de direção |
 
 ---
 
 ## Dicas de Desenvolvimento com Streamlit
 
-- **Hot Reload (Atualização Automática):** O Streamlit detecta alterações no `app.py` automaticamente. Você pode marcar a opção "Always rerun" no canto superior direito do navegador.
+- **Hot Reload (Atualização Automática):** O Streamlit detecta alterações nos scripts automaticamente. Você pode marcar a opção "Always rerun" no canto superior direito do navegador.
 - **Porta personalizada:** Se a porta padrão `8501` estiver ocupada, use:
   ```bash
   streamlit run app.py --server.port 8502

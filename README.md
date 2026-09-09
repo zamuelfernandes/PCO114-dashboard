@@ -1,21 +1,27 @@
-# Carros Elétricos no Brasil — Dashboard Streamlit
+# Carros Elétricos e Híbridos no Brasil — Dashboard PBEV / Inmetro
 
-Painel interativo e moderno desenvolvido com **Streamlit**, **Pandas** e **Plotly** para análise e exploração de dados sobre o mercado de veículos 100% elétricos (BEV) no Brasil.
+Painel analítico interativo e moderno desenvolvido com **Streamlit**, **Pandas** e **Plotly** para exploração dos dados oficiais do **Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)** sobre veículos eletrificados no Brasil.
 
-Este repositório foi concebido como uma **versão base inicial (First Commit)** para que a equipe possa testar, expandir e implementar novas funcionalidades e visualizações com facilidade.
+O repositório possui uma esteira completa e automatizada de dados (ETL) que extrai, padroniza e analisa mais de **380 versões** de veículos **100% elétricos (BEV)**, **híbridos plug-in (PHEV)** e **híbridos convencionais (HEV)** comercializados e homologados pelas montadoras no país.
 
 ---
 
 ## Principais Recursos
 
-- **Filtros Interativos na Barra Lateral:** Segmentação dinâmica por marca, categoria da carroceria (SUV, Hatchback, Sedan, Subcompacto), teto de preço e autonomia mínima.
-- **KPIs Estratégicos:** Total de modelos no filtro, preço médio, autonomia média e veículo campeão de autonomia.
-- **Gráficos Interativos (Plotly):**
-  - Dispersão: Relação Preço vs. Autonomia com indicador de potência (cv) no tamanho da bolha.
-  - Barras: Quantidade de modelos por montadora/marca.
-  - Boxplot: Distribuição e dispersão de preços por categoria.
-- **Tabela Exploratória & Exportação:** Visualização completa e botão para download dos dados filtrados em formato `.csv`.
-- **Suporte Duplo de Ambientes:** Compatível com **`uv`** (alta velocidade) e com **`venv` + `pip`** clássico.
+- **Filtro de Propulsão Multisseleção:** Permite isolar unicamente veículos 100% elétricos (BEV), híbridos plug-in (PHEV) ou híbridos convencionais (HEV).
+- **Início Otimizado com Top 5:** O painel inicializa pré-selecionado com as 5 principais marcas e 5 categorias por volume, mantendo o carregamento ágil e a barra lateral compacta.
+- **Categorias Oficiais do Inmetro:** Padronização rigorosa segundo as categorias normatizadas do PBEV (`Sub Compacto`, `Compacto`, `Médio`, `Grande`, `Extra Grande`, `Utilitário Esportivo Compacto`, `Utilitário Esportivo Grande`, `Fora de Estrada Grande`, `Esportivo`, `Comercial`, `Picape`).
+- **Métricas Oficiais de Engenharia & Consumo:**
+  - Consumo Energético oficial em Megajoules por quilômetro ($MJ/km$).
+  - Autonomia elétrica homologada pelo Inmetro ($km$).
+  - Rendimento equivalente cidade e estrada ($km/l$).
+  - Emissões diretas de $CO_2$ fóssil no escapamento ($g/km$).
+- **Abas Analíticas Dedicadas:**
+  - **Autonomia & Eficiência:** Dispersão interativa (Autonomia vs. Consumo $MJ/km$), ranking de modelos por montadora e dispersão por categoria.
+  - **Selo CONPET & Classificação PBE:** Proporção de veículos certificados com o Selo CONPET de alta eficiência, distribuição de notas A–E e emissões de $CO_2$.
+  - **Tabela Oficial Homologada:** Planilha pesquisável completa com botão para download em CSV.
+- **Pipeline de Dados Modular em 3 Estágios:** Download oficial online, extração tabular com `pdfplumber` e padronização com `run_pipeline.py`.
+- **Zero Emojis:** Estilização visual exclusivamente com **Google Material Symbols** (`:material/icon_name:`).
 
 ---
 
@@ -33,7 +39,7 @@ cd carros-eletricos-dashboard
 uv venv
 uv pip install -r requirements.txt
 
-# 2. Executa a aplicação
+# 2. Executa a aplicação Streamlit
 uv run streamlit run app.py
 ```
 
@@ -52,68 +58,63 @@ O dashboard estará disponível em: `http://localhost:8501`.
 
 ---
 
-## Documentação para a Equipe
+## Pipeline de Atualização de Dados (PBEV / Inmetro)
 
-Na pasta [`docs/`](docs/) você encontra guias preparados para os colaboradores:
+Para atualizar a base de dados a partir da tabela oficial publicada no portal do Inmetro:
 
-- [**Guia de Desenvolvimento Local**](docs/development_guide.md): Passo a passo detalhado para Windows, Linux e Mac usando `uv` ou `pip`, dicionário de dados do CSV e dicas de desenvolvimento com Streamlit.
+```bash
+# Executa o pipeline completo (Download -> Extração Tabular -> Padronização)
+uv run python scripts/run_pipeline.py
+
+# Se o PDF já foi baixado e deseja apenas reprocessar:
+uv run python scripts/run_pipeline.py --skip-download
+```
 
 ---
 
-## Estrutura do Projeto
+## Documentação para a Equipe
+
+Na pasta [`docs/`](docs/) você encontra guias detalhados:
+
+- [**Guia de Desenvolvimento Local**](docs/development_guide.md): Configuração de ambiente, arquitetura de pastas e dicas de desenvolvimento com Streamlit.
+- [**Guia de Atualização da Base de Dados**](docs/data_update_guide.md): Detalhamento do pipeline modular (`01_download`, `02_extract`, `03_process` e `run_pipeline.py`).
+- [**Diretrizes para Agentes de IA**](Agents.md): Padrões de código, convenção de zero emojis e decisões arquiteturais.
+
+---
+
+## Estrutura do Repositório
 
 ```
 carros-eletricos-dashboard/
-├── .gitignore                     # Arquivos ignorados pelo Git (.venv, caches, temporários)
+├── .gitignore                     # Arquivos ignorados pelo Git (.venv, caches, data/raw, data/interim)
 ├── .python-version                # Versão padrão do Python recomendada (3.12)
-├── pyproject.toml                 # Configuração moderna de empacotamento para uv/pip
-├── requirements.txt               # Lista de dependências para instalação rápida com pip
+├── pyproject.toml                 # Configuração de empacotamento para uv/pip
+├── requirements.txt               # Lista de dependências com versões pinadas
 ├── README.md                      # Apresentação e guia rápido do projeto
-├── Agents.md                      # Contexto geral do projeto e diretrizes para agentes de IA
+├── Agents.md                      # Contexto geral e diretrizes para agentes de IA
 ├── CHANGELOG.md                   # Histórico de versões e notas de lançamento
-├── app.py                         # Executor base / ponto de entrada da aplicação
+├── app.py                         # Ponto de entrada e orquestrador do Streamlit
 │
 ├── src/                           # Código-fonte modular da aplicação
-│   ├── config.py                  # Configurações gerais, caminhos, tema e estilos CSS
-│   ├── data.py                    # Carregamento em cache e filtragem de dados
+│   ├── config.py                  # Configurações de página, paletas de cores e estilos CSS
+│   ├── data.py                    # Carga (@st.cache_data) e filtragem por propulsão/Inmetro
 │   └── components/                # Componentes visuais isolados
-│       ├── sidebar.py             # Filtros interativos na barra lateral
-│       ├── kpis.py                # Cartões de métricas principais
-│       ├── charts.py              # Gráficos analíticos Plotly (dispersão, barras, boxplot)
-│       ├── table.py               # Tabela exploratória e exportação CSV
-│       └── footer.py              # Rodapé institucional
+│       ├── sidebar.py             # Filtros interativos (Propulsão, top 5 marcas/categorias, etc.)
+│       ├── kpis.py                # Cartões de métricas (Modelos, Autonomia Média, Consumo MJ/km)
+│       ├── charts.py              # Gráficos Plotly de eficiência, Selo CONPET e classificações PBE
+│       ├── table.py               # Tabela oficial completa e botão de download CSV
+│       └── footer.py              # Rodapé com atribuição ao PBEV / Inmetro
 │
 ├── data/
-│   └── carros_eletricos_brasil.csv # Base de dados com modelos reais vendidos no Brasil
+│   └── carros_eletricos_brasil.csv # Base oficial padronizada (380+ veículos homologados)
+│
+├── scripts/                       # Pipeline ETL modular
+│   ├── 01_download_inmetro.py     # Download automatizado do PDF oficial no gov.br/inmetro
+│   ├── 02_extract_raw_tables.py   # Extração tabular com pdfplumber de todas as páginas
+│   ├── 03_process_and_standardize.py # Limpeza, filtros de propulsão e padronização
+│   └── run_pipeline.py            # Orquestrador geral da esteira de dados
 │
 └── docs/
-    └── development_guide.md       # Guia para execução e desenvolvimento local
+    ├── development_guide.md       # Guia completo para desenvolvimento local
+    └── data_update_guide.md       # Procedimento operacional detalhado da esteira ETL
 ```
-
----
-
-## Base de Dados Inicial
-
-Os dados estão localizados em `data/carros_eletricos_brasil.csv` e contemplam modelos populares e de destaque comercializados no Brasil (como BYD Dolphin, Dolphin Mini, Seal, GWM Ora 03, Volvo EX30, XC40, Renault Kwid E-Tech, Peugeot e-2008, BMW iX1, Porsche Taycan, etc.).
-
-Principais colunas:
-- `marca`: Fabricante do veículo (ex: BYD, GWM, Volvo, etc.)
-- `modelo`: Nome do modelo
-- `versao`: Versão do acabamento/motorização
-- `ano_modelo`: Ano do modelo
-- `categoria`: Tipo de carroceria (Hatchback, SUV, Sedan, Subcompacto)
-- `preco_estimado_brl`: Preço aproximado de tabela em R$
-- `autonomia_inmetro_km`: Autonomia oficial aferida pelo Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)
-- `capacidade_bateria_kwh`: Capacidade da bateria (kWh)
-- `potencia_cv`: Potência em cavalos-vapor (cv)
-- `tempo_recarga_rapida_min`: Tempo médio para recarga de 20% a 80% em carregadores DC
-- `tipo_conector`: Padrão do plugue de recarga rápida (ex: CCS2)
-- `tracao`: Dianteira, Traseira ou Integral (AWD)
-
----
-
-## Próximos Passos Sugeridos para a Equipe
-
-1. Expandir a base de dados com novos lançamentos do mercado brasileiro.
-2. Adicionar novas métricas (ex: custo por km rodado, tempo de 0 a 100 km/h).
-3. Implementar comparador lado a lado entre dois modelos selecionados pelo usuário.
