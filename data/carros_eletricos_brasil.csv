@@ -1,0 +1,23 @@
+marca,modelo,versao,ano_modelo,categoria,preco_estimado_brl,autonomia_inmetro_km,capacidade_bateria_kwh,potencia_cv,tempo_recarga_rapida_min,tipo_conector,tracao
+Renault,Kwid E-Tech,Intense,2024,Subcompacto,99990.00,185,26.8,65,40,CCS2,Dianteira
+BYD,Dolphin Mini,4 Lugares,2024,Subcompacto,115800.00,280,38.0,75,30,CCS2,Dianteira
+Caoa Chery,iCar,STD,2023,Subcompacto,119990.00,197,30.8,61,36,CCS2,Traseira
+JAC,E-JS1,STD,2024,Subcompacto,126900.00,161,30.2,62,40,CCS2,Dianteira
+BYD,Dolphin,GS 180 EV,2024,Hatchback,149800.00,291,44.9,95,30,CCS2,Dianteira
+GWM,Ora 03,Skin,2024,Hatchback,150000.00,232,48.0,171,30,CCS2,Dianteira
+BYD,Dolphin,Plus,2024,Hatchback,179800.00,330,60.5,204,30,CCS2,Dianteira
+GWM,Ora 03,GT,2024,Hatchback,184000.00,319,63.0,171,40,CCS2,Dianteira
+Peugeot,e-2008,GT,2024,SUV,199990.00,234,50.0,136,30,CCS2,Dianteira
+BYD,Yuan Plus,GL,2024,SUV,229800.00,294,60.5,204,30,CCS2,Dianteira
+Volvo,EX30,Core Single Motor,2024,SUV,229950.00,250,51.0,272,26,CCS2,Traseira
+Volvo,EX30,Ultra Extended Range,2024,SUV,279950.00,338,69.0,272,28,CCS2,Traseira
+Renault,Megane E-Tech,EV60,2024,SUV,279900.00,337,60.0,220,36,CCS2,Dianteira
+BYD,Seal,AWD,2024,Sedan,296800.00,372,82.5,531,37,CCS2,Integral
+Nissan,Leaf,Tekna,2023,Hatchback,298490.00,192,40.0,149,40,CHAdeMO,Dianteira
+Volvo,XC40 Recharge,Plus Single Motor,2024,SUV,342950.00,385,69.0,238,28,CCS2,Traseira
+BMW,iX1,eDrive20 X-Line,2024,SUV,359950.00,332,66.5,204,29,CCS2,Dianteira
+Hyundai,Ioniq 5,Signature AWD,2025,SUV,394990.00,374,84.0,325,18,CCS2,Integral
+BMW,i4,eDrive40 M Sport,2024,Sedan,469950.00,422,83.9,340,31,CCS2,Traseira
+Ford,Mustang Mach-E,GT Performance AWD,2024,SUV,486000.00,379,91.0,487,45,CCS2,Integral
+Audi,Q8 e-tron,Performance Black,2024,SUV,699990.00,332,114.0,408,31,CCS2,Integral
+Porsche,Taycan,4S Cross Turismo,2024,Sedan,745000.00,389,93.4,530,22,CCS2,Integral
