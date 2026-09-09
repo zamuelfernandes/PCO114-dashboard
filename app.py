@@ -26,7 +26,7 @@ def main():
     df_filtrado = filter_data(df_raw, filters)
 
     # Cabeçalho Principal
-    st.title(":material/directions_car: Carros Elétricos no Brasil")
+    st.title(":material/electric_car: Carros Elétricos no Brasil")
     st.markdown(
         "Painel exploratório de modelos 100% elétricos (BEV) comercializados no mercado brasileiro. "
         "Use os filtros na barra lateral para segmentar por marca, preço e autonomia oficial do Inmetro."

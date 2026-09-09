@@ -140,8 +140,7 @@ carros-eletricos-dashboard/
 ├── data/
 │   └── carros_eletricos_brasil.csv # Base de dados de veículos elétricos
 └── docs/
-    ├── development_guide.md       # Este guia
-    └── deployment_guide.md        # Guia de deploy no Streamlit Community Cloud
+    └── development_guide.md       # Este guia
 ```
 
 ---

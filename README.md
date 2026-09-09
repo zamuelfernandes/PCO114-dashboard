@@ -54,12 +54,9 @@ O dashboard estará disponível em: `http://localhost:8501`.
 
 ## Documentação para a Equipe
 
-Na pasta [`docs/`](docs/) você encontra guias detalhados preparados especialmente para os colaboradores:
+Na pasta [`docs/`](docs/) você encontra guias preparados para os colaboradores:
 
-| Documento | Conteúdo |
-|---|---|
-| [**Guia de Desenvolvimento Local**](docs/development_guide.md) | Passo a passo detalhado para Windows, Linux e Mac usando `uv` ou `pip`, dicionário de dados do CSV e dicas de desenvolvimento com Streamlit. |
-| [**Guia de Deploy no Streamlit Cloud**](docs/deployment_guide.md) | Instruções completas para publicar o dashboard gratuitamente na plataforma oficial do Streamlit Community Cloud conectada ao GitHub. |
+- [**Guia de Desenvolvimento Local**](docs/development_guide.md): Passo a passo detalhado para Windows, Linux e Mac usando `uv` ou `pip`, dicionário de dados do CSV e dicas de desenvolvimento com Streamlit.
 
 ---
 
@@ -72,10 +69,12 @@ carros-eletricos-dashboard/
 ├── pyproject.toml                 # Configuração moderna de empacotamento para uv/pip
 ├── requirements.txt               # Lista de dependências para instalação rápida com pip
 ├── README.md                      # Apresentação e guia rápido do projeto
+├── Agents.md                      # Contexto geral do projeto e diretrizes para agentes de IA
+├── CHANGELOG.md                   # Histórico de versões e notas de lançamento
 ├── app.py                         # Executor base / ponto de entrada da aplicação
 │
 ├── src/                           # Código-fonte modular da aplicação
-│   ├── config.py                  # Configurações gerais, caminhos e estilos CSS
+│   ├── config.py                  # Configurações gerais, caminhos, tema e estilos CSS
 │   ├── data.py                    # Carregamento em cache e filtragem de dados
 │   └── components/                # Componentes visuais isolados
 │       ├── sidebar.py             # Filtros interativos na barra lateral
@@ -88,8 +87,7 @@ carros-eletricos-dashboard/
 │   └── carros_eletricos_brasil.csv # Base de dados com modelos reais vendidos no Brasil
 │
 └── docs/
-    ├── development_guide.md       # Guia para execução e desenvolvimento local
-    └── deployment_guide.md        # Guia para deploy no Streamlit Community Cloud
+    └── development_guide.md       # Guia para execução e desenvolvimento local
 ```
 
 ---
