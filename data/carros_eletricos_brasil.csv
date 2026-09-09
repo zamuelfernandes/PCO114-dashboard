@@ -1,23 +1,173 @@
-marca,modelo,versao,ano_modelo,categoria,preco_estimado_brl,autonomia_inmetro_km,capacidade_bateria_kwh,potencia_cv,tempo_recarga_rapida_min,tipo_conector,tracao
-Renault,Kwid E-Tech,Intense,2024,Subcompacto,99990.00,185,26.8,65,40,CCS2,Dianteira
-BYD,Dolphin Mini,4 Lugares,2024,Subcompacto,115800.00,280,38.0,75,30,CCS2,Dianteira
-Caoa Chery,iCar,STD,2023,Subcompacto,119990.00,197,30.8,61,36,CCS2,Traseira
-JAC,E-JS1,STD,2024,Subcompacto,126900.00,161,30.2,62,40,CCS2,Dianteira
-BYD,Dolphin,GS 180 EV,2024,Hatchback,149800.00,291,44.9,95,30,CCS2,Dianteira
-GWM,Ora 03,Skin,2024,Hatchback,150000.00,232,48.0,171,30,CCS2,Dianteira
-BYD,Dolphin,Plus,2024,Hatchback,179800.00,330,60.5,204,30,CCS2,Dianteira
-GWM,Ora 03,GT,2024,Hatchback,184000.00,319,63.0,171,40,CCS2,Dianteira
-Peugeot,e-2008,GT,2024,SUV,199990.00,234,50.0,136,30,CCS2,Dianteira
-BYD,Yuan Plus,GL,2024,SUV,229800.00,294,60.5,204,30,CCS2,Dianteira
-Volvo,EX30,Core Single Motor,2024,SUV,229950.00,250,51.0,272,26,CCS2,Traseira
-Volvo,EX30,Ultra Extended Range,2024,SUV,279950.00,338,69.0,272,28,CCS2,Traseira
-Renault,Megane E-Tech,EV60,2024,SUV,279900.00,337,60.0,220,36,CCS2,Dianteira
-BYD,Seal,AWD,2024,Sedan,296800.00,372,82.5,531,37,CCS2,Integral
-Nissan,Leaf,Tekna,2023,Hatchback,298490.00,192,40.0,149,40,CHAdeMO,Dianteira
-Volvo,XC40 Recharge,Plus Single Motor,2024,SUV,342950.00,385,69.0,238,28,CCS2,Traseira
-BMW,iX1,eDrive20 X-Line,2024,SUV,359950.00,332,66.5,204,29,CCS2,Dianteira
-Hyundai,Ioniq 5,Signature AWD,2025,SUV,394990.00,374,84.0,325,18,CCS2,Integral
-BMW,i4,eDrive40 M Sport,2024,Sedan,469950.00,422,83.9,340,31,CCS2,Traseira
-Ford,Mustang Mach-E,GT Performance AWD,2024,SUV,486000.00,379,91.0,487,45,CCS2,Integral
-Audi,Q8 e-tron,Performance Black,2024,SUV,699990.00,332,114.0,408,31,CCS2,Integral
-Porsche,Taycan,4S Cross Turismo,2024,Sedan,745000.00,389,93.4,530,22,CCS2,Integral
+marca,modelo,versao,categoria,propulsao,combustivel,motor,cambio,autonomia_inmetro_km,consumo_energetico_mj_km,km_l_equivalente_cidade,km_l_equivalente_estrada,emissao_co2_g_km,classificacao_categoria,classificacao_geral,selo_conpet,ar_condicionado,direcao
+Audi,A6 Avant e-tron,S line,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),474.0,0.6,37.0,31.1,0.0,A,A,Não,Sim,Elétrica
+Audi,A6 e-tron,Performance black,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),445.0,0.59,36.4,31.8,0.0,A,A,Não,Sim,Elétrica
+Audi,A6 e-tron,S line,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),443.0,0.59,36.5,32.2,0.0,A,A,Não,Sim,Elétrica
+Audi,Q6 e-tron Quattro,Dynamic,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),424.0,0.61,35.3,30.6,0.0,A,A,Não,Sim,Elétrica
+Audi,Q6 e-tron Quattro,Performance,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),411.0,0.64,34.0,29.6,0.0,A,A,Não,Sim,Elétrica
+Audi,Q6 e-tron Quattro,Performance black,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),411.0,0.64,34.0,29.6,0.0,A,A,Não,Sim,Elétrica
+Audi,Q6 e-tron Quattro,S line,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),424.0,0.61,35.3,30.6,0.0,A,A,Não,Sim,Elétrica
+Audi,Q6 e-tron RWD,Performance,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),411.0,0.64,33.8,29.3,0.0,A,A,Não,Sim,Elétrica
+Audi,RS e-tron GT,Performance,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),348.0,0.8,25.2,25.9,0.0,A,A,Não,Sim,Elétrica
+BMW,I5,M60,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,393.0,0.61,35.1,31.7,0.0,A,A,Não,Sim,Elétrica
+BMW,IX,xDrive 50,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,498.0,0.64,33.2,30.3,0.0,A,A,Não,Sim,Elétrica
+BMW,i7,xDrive60,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,467.0,0.65,31.8,30.3,0.0,A,A,Não,Sim,Elétrica
+BMW,iX1,eDrive20,Grande,100% Elétrico,Elétrico,Elétrico,Automática,345.0,0.55,37.4,36.1,0.0,A,A,Não,Sim,Elétrica
+BMW,iX1,xDrive30,Grande,100% Elétrico,Elétrico,Elétrico,Automática,324.0,0.6,35.7,32.0,0.0,A,A,Não,Sim,Elétrica
+BMW,iX2,xDrive30 MSP,Grande,100% Elétrico,Elétrico,Elétrico,Automática,327.0,0.59,35.7,32.8,0.0,A,A,Não,Sim,Elétrica
+BMW,iX3,50 XDRIVE MSP,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,570.0,0.54,38.7,35.7,0.0,A,A,Não,Sim,Elétrica
+BYD,DOLPHIN,GS 180EV,Médio,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,291.0,0.42,51.9,43.5,0.0,A,A,Não,Sim,Elétrica
+BYD,DOLPHIN,PLUS 310EV,Médio,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,330.0,0.51,42.1,36.8,0.0,A,A,Não,Sim,Elétrica
+BYD,DOLPHIN,SE 290EV,Médio,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,272.0,0.49,45.8,36.7,0.0,A,A,Não,Sim,Elétrica
+BYD,DOLPHIN MINI,GL 5 EV,Sub Compacto,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),224.0,0.39,60.6,44.4,0.0,A,A,Não,Sim,Elétrica
+BYD,DOLPHIN MINI,GS 5 EV,Sub Compacto,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,280.0,0.41,58.6,41.9,0.0,A,A,Não,Sim,Elétrica
+BYD,ET3,---,Comercial,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,170.0,0.71,30.7,26.3,0.0,A,A,Não,Sim,Elétrica
+BYD,HAN,AWD GS 680EV,Extra Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,349.0,0.69,30.8,28.1,0.0,A,A,Não,Sim,Elétrica
+BYD,SEAL,AWD GS 590EV,Extra Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,372.0,0.62,34.9,30.5,0.0,A,A,Não,Sim,Elétrica
+BYD,SEALION 7,GS 690EV,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),360.0,0.66,33.2,28.2,0.0,A,A,Não,Sim,Elétrica
+BYD,TAN,AWD GS 700EV,Extra Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,430.0,0.73,30.2,25.3,0.0,A,A,Não,Sim,Elétrica
+BYD,YUAN PLUS,GL310 EV,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,294.0,0.56,39.8,33.1,0.0,A,A,Não,Sim,Elétrica
+BYD,YUAN PLUS,GS 560EV,Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,378.0,0.58,38.3,32.0,0.0,A,A,Sim,Sim,Elétrica
+BYD,YUAN PLUS,GS310 EV,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,294.0,0.56,39.8,33.1,0.0,A,A,Não,Sim,Elétrica
+BYD,YUAN PRO,GS 290EV,Médio,100% Elétrico,Elétrico,Elétrico,Direta / Elétrica,250.0,0.51,44.0,35.7,0.0,A,A,Não,Sim,Elétrica
+CAOA Changan,AVATR 11,EV,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,497.0,0.6,35.0,32.2,0.0,A,A,Não,Sim,Elétrica
+Chevrolet,BLAZER EV,RS,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (A),481.0,0.63,34.2,30.4,0.0,A,A,Não,Sim,Elétrica
+Chevrolet,CAPTIVA EV,PR,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (A),304.0,0.62,36.2,28.9,0.0,A,A,Não,Sim,Elétrica
+Chevrolet,EQUINOX EV,Única,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (A),443.0,0.56,37.1,35.6,0.0,A,A,Não,Sim,Elétrica
+Chevrolet,SPARK EUV,ACTIV,Médio,100% Elétrico,Elétrico,Elétrico,Automática,258.0,0.5,47.4,34.9,0.0,A,A,Não,Sim,Elétrica
+Citroën,E-JUMPY,CARGO,Comercial,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),258.0,0.75,28.1,26.1,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,AIR 11M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),239.0,0.92,23.9,20.3,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,AIR 8M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),262.0,0.84,25.3,23.1,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,AIR PRO 8M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),262.0,0.84,25.3,23.1,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,AIR PRO11M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),239.0,0.92,23.9,20.3,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,LUX 11M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),239.0,0.92,23.9,20.3,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,LUX 8M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),262.0,0.84,25.3,23.1,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,LUX PRO 8M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),262.0,0.84,25.3,23.1,0.0,A,A,Não,Sim,Elétrica
+Farizon,SV,LUX PRO11M3,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),239.0,0.92,23.9,20.3,0.0,A,A,Não,Sim,Elétrica
+Farizon,V6E,Única,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),156.0,0.72,32.1,24.5,0.0,A,A,Não,Sim,Elétrica
+Fiat,500E,ICON,Sub Compacto,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),227.0,0.46,47.3,40.4,0.0,C,A,Não,Sim,Elétrica
+Ford,E-Transit,C35EBAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,C35LBAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,F35EAAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,F35LAAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,F35LMAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,F35MAAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Ford,E-Transit,F35MMAB,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),203.0,1.02,23.9,16.5,0.0,A,B,Não,Sim,Elétrica
+Foton,ETOANO,PRO H,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),179.0,1.05,20.6,18.1,0.0,A,B,Não,Sim,Elétrica
+Foton,ETOANO,PRO M,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),198.0,1.0,23.5,17.6,0.0,A,B,Não,Sim,Elétrica
+Foton,EVIEW,GRAND53,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),162.0,0.82,27.3,22.1,0.0,A,A,Não,Sim,Elétrica
+Foton,EVIEW,GRAND77,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),187.0,1.0,20.2,20.5,0.0,A,B,Não,Sim,Elétrica
+Foton,EWONDER,CHASSI,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),189.0,0.58,43.3,28.3,0.0,A,A,Não,Sim,Elétrica
+GAC,AION ES,PLUS,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),314.0,0.45,47.1,42.9,0.0,A,A,Não,Sim,Elétrica
+GAC,AION UT,ELITE,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),310.0,0.57,38.3,32.3,0.0,A,A,Não,Sim,Elétrica
+GAC,AION UT,PREMIUM,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),253.0,0.51,43.7,35.3,0.0,A,A,Não,Sim,Elétrica
+GAC,AION V,ELITE,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),389.0,0.54,40.3,34.6,0.0,A,A,Não,Sim,Elétrica
+GAC,AION V,PREMIUM,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),325.0,0.55,38.8,34.7,0.0,A,A,Não,Sim,Elétrica
+GAC,AION Y,ELITE,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),318.0,0.57,36.5,35.0,0.0,A,A,Não,Sim,Elétrica
+GAC,AION Y,PREMIUM,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),318.0,0.57,36.5,35.0,0.0,A,A,Não,Sim,Elétrica
+GAC,HYPTEC HT,ELITE,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),431.0,0.53,43.1,33.4,0.0,A,A,Não,Sim,Elétrica
+GAC,HYPTEC HT,ULTRA,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),431.0,0.53,43.1,33.4,0.0,A,A,Não,Sim,Elétrica
+GWM,ORA,5,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),349.0,0.49,44.8,37.1,0.0,A,A,Não,Sim,Elétrica
+GWM,ORA 03,BEV58,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),315.0,0.51,42.8,36.1,0.0,A,A,Não,Sim,Elétrica
+GWM,ORA 03,BEV58 C,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),315.0,0.51,42.8,36.1,0.0,A,A,Não,Sim,Elétrica
+GWM,ORA 03,GT BEV63,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),295.0,0.54,41.1,33.7,0.0,A,A,Não,Sim,Elétrica
+GWM,ORA 03,SKIN BEV48,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),232.0,0.52,41.7,35.7,0.0,A,A,Não,Sim,Elétrica
+Geely,EX2,MAX,Médio,100% Elétrico,Elétrico,Elétrico,Automática,289.0,0.39,60.1,45.2,0.0,A,A,Não,Sim,Elétrica
+Geely,EX2,PRO,Médio,100% Elétrico,Elétrico,Elétrico,Automática,289.0,0.39,60.1,45.2,0.0,A,A,Não,Sim,Elétrica
+Geely,EX5,MAX,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,349.0,0.51,43.0,37.1,0.0,A,A,Não,Sim,Elétrica
+Geely,EX5,PRO,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,413.0,0.42,51.0,44.7,0.0,A,A,Não,Sim,Elétrica
+Hyundai,IONIQ 5,Platinum,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),374.0,0.66,33.6,28.1,0.0,A,A,Não,Sim,Elétrica
+Hyundai,IONIQ 5,Signature,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),374.0,0.66,33.6,28.1,0.0,A,A,Não,Sim,Elétrica
+Hyundai,IONIQ 5,Ultimate,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),374.0,0.66,33.6,28.1,0.0,A,A,Não,Sim,Elétrica
+JAC,EJV5.5,CARGO,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),260.0,0.63,38.0,27.4,0.0,A,A,Não,Sim,Elétrica
+JAC,IEV330P,IEV330,Picape,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),226.0,0.75,29.2,25.1,0.0,A,A,Não,Sim,Elétrica
+JAC,e-J7,e-J7,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),263.0,0.5,44.0,37.1,0.0,A,A,Não,Sim,Elétrica
+JAC,e-JS1,e-JS1,Sub Compacto,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),181.0,0.5,46.6,35.0,0.0,E,A,Não,Sim,Elétrica
+JAC,e-JS1,e-JS1 EXT,Sub Compacto,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),181.0,0.5,46.6,35.0,0.0,E,A,Não,Sim,Elétrica
+Kia,EV5 2WD,AIR 2WD,Extra Grande,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),402.0,0.6,37.6,30.5,0.0,A,A,Não,Sim,Elétrica
+Kia,EV5 2WD,LAND 2WD,Extra Grande,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),402.0,0.6,37.6,30.5,0.0,A,A,Não,Sim,Elétrica
+Leapmotor,B10,LIFE,Extra Grande,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),288.0,0.55,41.2,32.8,0.0,A,A,Não,Sim,Elétrica
+Leapmotor,C10,Design,Extra Grande,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),338.0,0.61,35.1,30.8,0.0,A,A,Não,Sim,Elétrica
+Lexus,RZ,500e,Extra Grande,100% Elétrico,Elétrico,Elétrico,CVT,357.0,0.57,39.1,32.3,0.0,A,A,Não,Sim,Elétrica
+MG,CYBERSTER,77 KWH AWD,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),342.0,0.56,38.9,33.9,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,64 KWH AWD,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),279.0,0.59,36.3,32.7,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,64 KWH COM,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),364.0,0.5,43.3,37.4,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,64 KWH LUX,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),364.0,0.5,43.3,37.4,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,URB EV43KWH COM,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),299.0,0.4,56.8,44.0,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,URB EV43KWH LUX,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),299.0,0.4,56.8,44.0,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,URB EV54KWH COM,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),358.0,0.42,53.0,42.8,0.0,A,A,Não,Sim,Elétrica
+MG,MG4,URB EV54KWH LUX,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),358.0,0.42,53.0,42.8,0.0,A,A,Não,Sim,Elétrica
+MG,S5,EV 62KWH COM,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),351.0,0.51,43.0,36.7,0.0,A,A,Não,Sim,Elétrica
+MG,S5,EV 62KWH LUX,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),351.0,0.51,43.0,36.7,0.0,A,A,Não,Sim,Elétrica
+Mercedes-Benz,320 E SPRINTER,Chassi,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),206.0,1.09,21.1,16.3,0.0,A,B,Não,Sim,Elétrica
+Mercedes-Benz,320 E SPRINTER,Furgão,Comercial,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),206.0,1.09,21.1,16.3,0.0,A,B,Não,Sim,Elétrica
+Mercedes-Benz,EQB250+,Única,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),376.0,0.53,40.3,36.6,0.0,A,A,Não,Sim,Elétrica
+Mercedes-Benz,GLB250,Única,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),427.0,0.57,37.8,33.4,0.0,A,A,Não,Sim,Elétrica
+Mini,Aceman,E,Médio,100% Elétrico,Elétrico,Elétrico,Automática,253.0,0.46,47.6,40.2,0.0,A,A,Não,Sim,Elétrica
+Mini,Aceman,SE,Médio,100% Elétrico,Elétrico,Elétrico,Automática,270.0,0.52,40.8,36.7,0.0,A,A,Não,Sim,Elétrica
+Mini,Cooper,E,Compacto,100% Elétrico,Elétrico,Elétrico,Automática,239.0,0.46,48.0,39.7,0.0,A,A,Não,Sim,Elétrica
+Mini,Cooper,SE,Compacto,100% Elétrico,Elétrico,Elétrico,Automática,312.0,0.48,46.1,38.4,0.0,A,A,Não,Sim,Elétrica
+Mini,Countryman,SE EXCLUSIVE,Grande,100% Elétrico,Elétrico,Elétrico,Automática,320.0,0.61,35.0,31.8,0.0,A,A,Não,Sim,Elétrica
+Mini,Countryman,SE TOP,Grande,100% Elétrico,Elétrico,Elétrico,Automática,320.0,0.61,35.0,31.8,0.0,A,A,Não,Sim,Elétrica
+Mini,JCW-E,3P,Compacto,100% Elétrico,Elétrico,Elétrico,Automática,306.0,0.48,43.8,40.2,0.0,A,A,Não,Sim,Elétrica
+Mini,JCW-E,ACEMAN,Médio,100% Elétrico,Elétrico,Elétrico,Automática,312.0,0.5,41.2,39.8,0.0,A,A,Não,Sim,Elétrica
+Omoda,E5,Única,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),345.0,0.51,44.7,35.2,0.0,A,A,Não,Sim,Elétrica
+Peugeot,E-208,GT,Compacto,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),220.0,0.59,37.8,30.8,0.0,A,A,Não,Sim,Elétrica
+Peugeot,E-EXPERT,CARGO,Comercial,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),258.0,0.75,28.1,26.1,0.0,A,A,Não,Sim,Elétrica
+Peugeot,E2008,GT,Médio,100% Elétrico,Elétrico,ELÉTRICO,Automática (1 marcha),261.0,0.55,38.2,35.3,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E C,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E C,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E CO,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E CO,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E OF,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,E OF,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,493.0,0.63,35.0,29.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,ET,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,481.0,0.64,34.3,29.1,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,ET C,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,481.0,0.64,34.3,29.1,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,ET CO,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,481.0,0.64,34.3,29.1,0.0,A,A,Não,Sim,Elétrica
+Porsche,CAYENNE,ET OF,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática,481.0,0.64,34.3,29.1,0.0,A,A,Não,Sim,Elétrica
+Porsche,MACAN,E4,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,443.0,0.6,36.5,31.0,0.0,A,A,Não,Sim,Elétrica
+Porsche,MACAN,E4S,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,438.0,0.61,36.2,30.4,0.0,A,A,Não,Sim,Elétrica
+Porsche,MACAN,EGTS,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,441.0,0.61,36.1,30.6,0.0,A,A,Não,Sim,Elétrica
+Porsche,MACAN,ETURBO,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,435.0,0.61,36.1,30.3,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,4CT,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,415.0,0.69,30.0,28.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,4S,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,415.0,0.69,30.0,28.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,4S BE,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,415.0,0.69,30.0,28.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,4S CT,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,415.0,0.69,30.0,28.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,TURBO S,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,425.0,0.67,30.7,30.2,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,TURBOCT,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,415.0,0.69,30.0,28.5,0.0,A,A,Não,Sim,Elétrica
+Porsche,TAYCAN,TURBOGT,Esportivo,100% Elétrico,Elétrico,Elétrico,Automática,442.0,0.64,33.7,29.7,0.0,A,A,Não,Sim,Elétrica
+Renault,E-KWID,CARGO,Comercial,100% Elétrico,Elétrico,Elétrico,Automática,185.0,0.44,52.7,39.6,0.0,A,A,Não,Sim,Elétrica
+Renault,E-KWID,INTENS,Sub Compacto,100% Elétrico,Elétrico,Elétrico,Automática,185.0,0.44,52.7,39.6,0.0,B,A,Não,Sim,Elétrica
+Renault,KANGOO,ETECHL2,Comercial,100% Elétrico,Elétrico,Elétrico,Automática,210.0,0.6,37.5,30.3,0.0,A,A,Não,Sim,Elétrica
+Renault,MÉGANE,E-TECH,Médio,100% Elétrico,Elétrico,Elétrico,Automática,337.0,0.51,41.4,38.8,0.0,A,A,Não,Sim,Elétrica
+Suzuki,e-Vitara,4STY 2WD,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),317.0,0.54,41.5,34.3,0.0,A,A,Não,Sim,Elétrica
+Suzuki,e-Vitara,4STY 4WD,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),293.0,0.58,37.8,31.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,6 CORE,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),385.0,0.51,41.7,37.2,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,6 PLUS,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),385.0,0.51,41.7,37.2,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,6 ULTRA,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),385.0,0.51,41.7,37.2,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,8 CORE,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),404.0,0.59,36.6,32.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,8 PLUS,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),404.0,0.59,36.6,32.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,8 ULTRA,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),404.0,0.59,36.6,32.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,PERF BLACK,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),404.0,0.59,36.6,32.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,EC40,PERF ULTRA,Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),404.0,0.59,36.6,32.6,0.0,A,A,Não,Sim,Elétrica
+Volvo,ES90,TWIN PE ULT,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),524.0,0.55,38.9,34.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,C COUNTRY,Utilitário Esportivo Compacto,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),327.0,0.57,37.3,33.4,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,CROSSC PLUS,Utilitário Esportivo Compacto,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),333.0,0.58,37.8,31.8,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,E40 CORE,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),250.0,0.55,40.1,33.9,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,E40 PLUS,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),250.0,0.55,40.1,33.9,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,E60 CORE,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),338.0,0.52,43.2,35.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,E60 PLUS,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),338.0,0.52,43.2,35.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,E60 ULTRA,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),338.0,0.52,43.2,35.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX30,TWIN ULTRA,Médio,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),316.0,0.62,33.4,32.0,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,6 CORE,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),364.0,0.55,39.4,34.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,6 PLUS,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),364.0,0.55,39.4,34.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,6 ULTRA,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),364.0,0.55,39.4,34.3,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,8 CORE,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),393.0,0.59,35.7,33.0,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,8 PLUS,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),393.0,0.59,35.7,33.0,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX40,8 ULTRA,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),393.0,0.59,35.7,33.0,0.0,A,A,Não,Sim,Elétrica
+Volvo,EX90,ULT TWIN PER,Utilitário Esportivo Grande,100% Elétrico,Elétrico,Elétrico,Automática (1 marcha),459.0,0.68,32.6,27.4,0.0,A,A,Não,Sim,Elétrica
+Zeekr,001,Flagship,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,426.0,0.63,34.1,30.1,0.0,A,A,Não,Sim,Elétrica
+Zeekr,001,Premium,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,426.0,0.63,34.1,30.1,0.0,A,A,Não,Sim,Elétrica
+Zeekr,7X,Flagship AWD,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,423.0,0.64,34.5,29.0,0.0,A,A,Não,Sim,Elétrica
+Zeekr,7X,Premium RWD,Extra Grande,100% Elétrico,Elétrico,Elétrico,Automática,491.0,0.55,39.5,34.0,0.0,A,A,Não,Sim,Elétrica
