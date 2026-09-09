@@ -26,3 +26,10 @@ build/
 # Operating System files
 .DS_Store
 Thumbs.db
+
+# Backups temporários
+*.bak
+
+# Arquivos brutos e intermediários baixados do Inmetro
+data/raw/
+data/interim/
