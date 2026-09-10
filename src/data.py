@@ -71,8 +71,4 @@ def filter_data(df_raw: pd.DataFrame, filters: dict) -> pd.DataFrame:
     if "auto_min" in filters and filters["auto_min"] is not None:
         df = df[df["autonomia_inmetro_km"] >= filters["auto_min"]]
 
-    # 5. Filtro por Selo CONPET
-    if "selo_conpet" in filters and filters["selo_conpet"] != "Todos":
-        df = df[df["selo_conpet"] == filters["selo_conpet"]]
-
     return df

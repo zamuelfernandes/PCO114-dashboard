@@ -59,18 +59,9 @@ def render_sidebar(df_raw: pd.DataFrame) -> dict:
         help="Quanto menor o valor em MJ/km, mais eficiente é o veículo elétrico.",
     )
 
-    # 5. Filtro por Selo CONPET
-    selo_opcao = st.sidebar.selectbox(
-        "Selo CONPET de Eficiência:",
-        options=["Todos", "Sim", "Não"],
-        index=0,
-        help="Filtra veículos premiados com o Selo CONPET de Eficiência Energética do governo federal.",
-    )
-
     return {
         "marcas": marcas_selecionadas,
         "categorias": categorias_selecionadas,
         "auto_min": auto_limite,
         "consumo_max": consumo_limite,
-        "selo_conpet": selo_opcao,
     }
