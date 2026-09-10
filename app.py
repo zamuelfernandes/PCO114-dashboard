@@ -6,7 +6,7 @@ oficiais de veículos elétricos a bateria (BEV) homologados pelo PBEV / Inmetro
 
 import streamlit as st
 
-from src.components.charts import render_charts, render_conpet_and_pbe_tab
+from src.components.charts import render_charts
 from src.components.footer import render_footer
 from src.components.highlights import render_highlights_tab
 from src.components.kpis import render_kpis
@@ -90,10 +90,9 @@ def main():
     st.markdown("---")
 
     # Abas de Análise e Dados
-    tab_destaques, tab_eficiencia, tab_conpet, tab_tabela, tab_estudo = st.tabs([
+    tab_destaques, tab_eficiencia, tab_tabela, tab_estudo = st.tabs([
         ":material/star: Destaques do Mercado",
         ":material/bar_chart: Autonomia & Eficiência",
-        ":material/eco: Selo CONPET & Classificação PBE",
         ":material/table_chart: Tabela Oficial Homologada",
         ":material/lightbulb: Entenda o Estudo",
     ])
@@ -103,9 +102,6 @@ def main():
 
     with tab_eficiencia:
         render_charts(df_filtrado)
-
-    with tab_conpet:
-        render_conpet_and_pbe_tab(df_filtrado)
 
     with tab_tabela:
         render_table(df_filtrado)
