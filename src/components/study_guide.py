@@ -72,7 +72,7 @@ def render_study_guide():
             *Carros pequenos (compactos urbanos) andam muito menos que os SUVs grandalhões de luxo? 
             Existem modelos que surpreendem e superam a média de alcance da sua categoria?*
             
-            :material/arrow_forward: *Veja a divisão no **Treemap de Categorias** (aba **Destaques**) e a dispersão real no **Boxplot por Categoria** (aba **Autonomia & Eficiência**).*
+            :material/arrow_forward: *Veja a divisão no **Top 10 Autonomia** (aba **Destaques**) e a dispersão real no **Boxplot por Categoria** (aba **Autonomia & Eficiência**).*
             """
         )
 
