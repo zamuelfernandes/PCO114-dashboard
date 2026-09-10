@@ -94,17 +94,17 @@ def render_study_guide():
             *Diferente dos carros comuns a combustão (que gastam mais no trânsito), o elétrico recarrega a bateria toda vez que freia. 
             Qual é o tamanho real dessa vantagem urbana no dia a dia dos modelos à venda no Brasil?*
             
-            :material/arrow_forward: *Veja a resposta direta no gráfico **O Paradoxo Elétrico: Cidade vs. Estrada** na aba **Destaques do Mercado** e a dispersão na aba **Selo CONPET & Classificação PBE**.*
+            :material/arrow_forward: *Veja a resposta direta no gráfico **O Paradoxo Elétrico: Cidade vs. Estrada** na aba **Destaques do Mercado**.*
             """
         )
 
     with st.container(border=True):
-        st.markdown("##### 5. Todos os carros elétricos merecem selo de eficiência máxima?")
+        st.markdown("##### 5. Onde consultar e comparar os dados oficiais de cada modelo?")
         st.markdown(
             """
-            *Ser 100% elétrico é garantia automática de nota máxima? Quantos veículos realmente conquistam o cobiçado Selo CONPET 
-            de alta eficiência do governo brasileiro e quantos deixam a desejar?*
+            *Quer checar as informações completas de um veículo específico que você viu na rua ou pretende comprar? 
+            Como auditar os dados brutos de homologação sem depender de promessas de comerciais?*
             
-            :material/arrow_forward: *Veja a resposta nos gráficos de **Selo CONPET e Notas PBE** na aba **Selo CONPET & Classificação PBE**.*
+            :material/arrow_forward: *Pesquise por marca ou versão, ordene qualquer indicador técnico e baixe a planilha completa na aba **Tabela Oficial Homologada**.*
             """
         )
