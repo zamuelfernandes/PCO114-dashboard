@@ -51,13 +51,6 @@ CATEGORY_COLOR_MAP = {
     "Minivan": "#17becf",
 }
 
-# Paleta padronizada por tipo de propulsão
-PROPULSION_COLOR_MAP = {
-    "100% Elétrico": "#00CC96",
-    "Híbrido Plug-in": "#636EFA",
-    "Híbrido": "#FFA15A",
-}
-
 
 def setup_page_and_styles():
     """Configura metadados da página, layout e estilos CSS customizados."""

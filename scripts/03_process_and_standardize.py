@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Etapa 03: Processamento e Padronização dos Dados de Veículos Eletrificados (Inmetro PBEV).
+"""Etapa 03: Processamento e Padronização dos Dados de Veículos 100% Elétricos (Inmetro PBEV).
 
-Lê o CSV bruto extraído da etapa 02, filtra veículos 100% elétricos e híbridos,
+Lê o CSV bruto extraído da etapa 02, filtra veículos 100% elétricos (BEV),
 padroniza nomes de montadoras, categorias oficiais do Inmetro, converte métricas
 numéricas (autonomia, consumo MJ/km, km/l equivalente, emissões CO2) e salva o
 dataset final em data/carros_eletricos_brasil.csv.
