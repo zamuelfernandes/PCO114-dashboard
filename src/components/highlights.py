@@ -9,7 +9,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from src.config import CATEGORY_COLOR_MAP, PLOTLY_CONFIG_PT_BR
+from src.config import CATEGORY_COLOR_MAP, PLOTLY_CONFIG_MINIMAL, PLOTLY_CONFIG_PT_BR
 
 
 def render_top_autonomy(df_filtrado: pd.DataFrame):
@@ -57,19 +57,19 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
 
     fig.update_layout(
         height=420,
-        margin=dict(l=10, r=60, t=10, b=30),
+        margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
             title="Autonomia Homologada (km)",
             ticksuffix=" km",
-            range=[0, max_auto * 1.15],
+            range=[0, max_auto * 1.20],
             gridcolor="#f1f5f9",
         ),
         yaxis=dict(title="", tickfont=dict(size=11, color="#0f172a")),
         separators=",.",
     )
 
-    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_top_efficiency(df_filtrado: pd.DataFrame):
@@ -116,19 +116,19 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
 
     fig.update_layout(
         height=420,
-        margin=dict(l=10, r=60, t=10, b=30),
+        margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
             title="Rendimento Equivalente na Cidade (km/l)",
             ticksuffix=" km/l",
-            range=[0, max_eff * 1.15],
+            range=[0, max_eff * 1.20],
             gridcolor="#f1f5f9",
         ),
         yaxis=dict(title="", tickfont=dict(size=11, color="#0f172a")),
         separators=",.",
     )
 
-    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_category_treemap(df_filtrado: pd.DataFrame):
@@ -162,10 +162,10 @@ def render_category_treemap(df_filtrado: pd.DataFrame):
 
     fig.update_layout(
         height=380,
-        margin=dict(t=10, b=10, l=10, r=10),
+        margin=dict(t=30, b=10, l=10, r=10),
     )
 
-    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_popular_city_vs_road(df_filtrado: pd.DataFrame):
@@ -222,13 +222,13 @@ def render_popular_city_vs_road(df_filtrado: pd.DataFrame):
         height=380,
         barmode="group",
         template="plotly_white",
-        margin=dict(t=10, b=30, l=10, r=10),
+        margin=dict(t=35, b=30, l=10, r=10),
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1,
+            y=1.04,
+            xanchor="left",
+            x=0,
         ),
         yaxis=dict(
             title="Rendimento (km/l equiv.)",
@@ -240,7 +240,7 @@ def render_popular_city_vs_road(df_filtrado: pd.DataFrame):
         separators=",.",
     )
 
-    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_highlights_tab(df_filtrado: pd.DataFrame):

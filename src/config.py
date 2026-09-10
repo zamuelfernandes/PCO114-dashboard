@@ -31,8 +31,24 @@ PLOTLY_CONFIG_PT_BR = {
             }
         }
     },
-    "displayModeBar": True,
+    "displayModeBar": "hover",
     "displaylogo": False,
+    "modeBarButtonsToRemove": ["lasso2d", "select2d"],
+}
+
+# Configuração minimalista para rankings e gráficos de leitura rápida (apenas download/câmera no hover)
+PLOTLY_CONFIG_MINIMAL = {
+    **PLOTLY_CONFIG_PT_BR,
+    "modeBarButtonsToRemove": [
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+    ],
 }
 
 # Paleta padronizada por categorias oficiais do Inmetro (PBEV)
@@ -102,6 +118,18 @@ def setup_page_and_styles():
         div[data-testid="stMetricValue"] {
             color: #0f172a;
             font-weight: 700;
+        }
+
+        /* Barra de ferramentas do Plotly: posicionamento discreto sem sobrepor dados */
+        .js-plotly-plot .plotly .modebar-container {
+            top: 2px !important;
+            right: 4px !important;
+        }
+        .js-plotly-plot .plotly .modebar-btn {
+            opacity: 0.55 !important;
+        }
+        .js-plotly-plot .plotly .modebar-btn:hover {
+            opacity: 1 !important;
         }
         </style>
         """,

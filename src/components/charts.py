@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from src.config import CATEGORY_COLOR_MAP, PLOTLY_CONFIG_PT_BR
+from src.config import CATEGORY_COLOR_MAP, PLOTLY_CONFIG_MINIMAL, PLOTLY_CONFIG_PT_BR
 
 
 def render_scatter_chart(df_filtrado: pd.DataFrame):
@@ -72,7 +72,7 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
     fig_scatter.update_layout(
         height=520,
         showlegend=False,
-        margin=dict(t=15, b=40, l=10, r=10),
+        margin=dict(t=30, b=40, l=10, r=10),
         separators=",.",
         hoverlabel=dict(
             bgcolor="white",
@@ -150,7 +150,7 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
     fig_bar.update_layout(
         height=altura,
         showlegend=False,
-        margin=dict(l=10, r=40, t=10, b=30),
+        margin=dict(l=10, r=40, t=30, b=30),
         hoverlabel=dict(
             bgcolor="white",
             font_size=12,
@@ -166,7 +166,7 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
         yaxis=dict(title="", tickfont=dict(size=12, color="#0f172a")),
     )
 
-    st.plotly_chart(fig_bar, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig_bar, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
@@ -197,7 +197,7 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
     fig_box.update_layout(
         height=altura,
         showlegend=False,
-        margin=dict(t=10, b=30, l=10, r=10),
+        margin=dict(t=30, b=30, l=10, r=10),
         separators=",.",
         yaxis=dict(
             title="Autonomia Homologada (km)",
@@ -213,7 +213,7 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
         ),
     )
 
-    st.plotly_chart(fig_box, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+    st.plotly_chart(fig_box, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
 
 def render_charts(df_filtrado: pd.DataFrame):
@@ -257,14 +257,14 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1,
+                y=1.04,
+                xanchor="left",
+                x=0,
                 title_text="Selo CONPET:",
             ),
-            margin=dict(t=10, b=10),
+            margin=dict(t=35, b=10),
         )
-        st.plotly_chart(fig_donut, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+        st.plotly_chart(fig_donut, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
     with col2:
         st.subheader("Classificação Geral PBE (Nota A-E)", help="Distribuição das notas gerais de eficiência energética conferidas pelo Inmetro.")
@@ -284,15 +284,15 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1,
+                y=1.04,
+                xanchor="left",
+                x=0,
                 title_text="Nota PBE:",
             ),
-            margin=dict(t=10, b=30),
+            margin=dict(t=35, b=30),
             xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]),
         )
-        st.plotly_chart(fig_pbe, width="stretch", config=PLOTLY_CONFIG_PT_BR)
+        st.plotly_chart(fig_pbe, width="stretch", config=PLOTLY_CONFIG_MINIMAL)
 
     # Gráfico de Rendimento Equivalente: Cidade vs Estrada
     st.subheader(
@@ -326,5 +326,5 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             "<extra></extra>"
         )
     )
-    fig_equiv.update_layout(height=450, showlegend=False, margin=dict(t=10, b=30), separators=",.")
+    fig_equiv.update_layout(height=450, showlegend=False, margin=dict(t=30, b=30), separators=",.")
     st.plotly_chart(fig_equiv, width="stretch", config=PLOTLY_CONFIG_PT_BR)
