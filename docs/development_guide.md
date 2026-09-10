@@ -1,6 +1,6 @@
 # Guia de Desenvolvimento Local
 
-Este guia orienta qualquer desenvolvedor ou colaborador da equipe a configurar o ambiente e executar o projeto **Carros Elétricos e Híbridos no Brasil** localmente.
+Este guia orienta qualquer desenvolvedor ou colaborador da equipe a configurar o ambiente e executar o projeto **Carros 100% Elétricos no Brasil** localmente.
 
 ---
 
@@ -159,7 +159,7 @@ O arquivo oficial final contém 18 colunas normatizadas:
 | `modelo` | Texto | `Dolphin Mini` | Nome comercial do modelo |
 | `versao` | Texto | `GS 5 EV` | Versão de acabamento |
 | `categoria` | Texto | `Sub Compacto` | Categoria oficial normatizada pelo Inmetro |
-| `propulsao` | Texto | `100% Elétrico` | `100% Elétrico`, `Híbrido Plug-in` ou `Híbrido` |
+| `propulsao` | Texto | `100% Elétrico` | `100% Elétrico` |
 | `combustivel` | Texto | `Elétrico` | Combustível utilizado (`Elétrico`, `Gasolina`, `Flex`) |
 | `motor` | Texto | `Elétrico` | Especificação do motor |
 | `cambio` | Texto | `Automática (1 marcha)` | Tipo de transmissão |

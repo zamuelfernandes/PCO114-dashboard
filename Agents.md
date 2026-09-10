@@ -6,11 +6,11 @@ Este documento fornece o contexto geral, decisões arquiteturais, padrões de c�
 
 ## 1. Visão Geral do Projeto
 
-O **Carros Elétricos no Brasil** é um painel analítico interativo voltado para visualização, comparação e análise técnica e mercadológica de veículos **100% elétricos (BEV)**, **híbridos plug-in (PHEV)** e **híbridos convencionais (HEV)** homologados e comercializados no Brasil, com base estrita no **Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)**.
+O **Carros 100% Elétricos no Brasil** é um painel analítico interativo voltado para visualização, comparação e análise técnica e mercadológica de veículos **100% elétricos a bateria (BEV)** homologados e comercializados no Brasil, com base estrita no **Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)**.
 
 ### Objetivos Principais:
 - Proporcionar uma visão clara e comparativa da eficiência energética ($MJ/km$), autonomia elétrica oficial homologada pelo Inmetro ($km$) e rendimento equivalente ($km/l$).
-- Permitir filtros rápidos por montadora, categoria oficial do Inmetro, piso de autonomia e propulsão (permitindo isolar 100% elétricos ou híbridos).
+- Permitir filtros rápidos por montadora, categoria oficial do Inmetro, piso de autonomia e consumo máximo em $MJ/km$.
 - Manter uma esteira de dados 100% automatizada e auditável para atualização a partir do PDF oficial do Inmetro, sem dados fictícios ou referências estáticas manuais.
 - Servir como base modular, extensível e pronta para produção no Streamlit Community Cloud.
 
@@ -57,7 +57,7 @@ carros-eletricos-dashboard/
 │       └── footer.py              # Rodapé institucional da aplicação com fonte Inmetro
 │
 ├── data/
-│   └── carros_eletricos_brasil.csv # Base oficial padronizada (380+ veículos homologados)
+│   └── carros_eletricos_brasil.csv # Base oficial padronizada (170+ veículos homologados)
 │
 ├── scripts/                       # Pipeline ETL modular
 │   ├── 01_download_inmetro.py     # Download automatizado do PDF oficial no gov.br/inmetro
@@ -86,9 +86,8 @@ Ao alterar ou adicionar código, qualquer agente de IA **DEVE** seguir rigorosam
 - **Separadores no Plotly:** Todos os gráficos devem utilizar `separators=",."` no layout.
 - **Dicionário de Tradução:** O `PLOTLY_CONFIG_PT_BR` (definido em `src/config.py`) deve ser repassado ao `config` de qualquer chamada `st.plotly_chart(fig, config=PLOTLY_CONFIG_PT_BR)`.
 
-### 4.3. Coerência de Cores por Categoria Oficial e Propulsão
+### 4.3. Coerência de Cores por Categoria Oficial
 - Utilize sempre o dicionário `CATEGORY_COLOR_MAP` para categorias normatizadas pelo Inmetro (`Sub Compacto`, `Compacto`, `Médio`, `Grande`, `Extra Grande`, `Utilitário Esportivo Compacto`, `Utilitário Esportivo Grande`, `Fora de Estrada Grande`, `Esportivo`, `Comercial`, `Picape`).
-- Utilize o dicionário `PROPULSION_COLOR_MAP` para gráficos segmentados por propulsão (`100% Elétrico`, `Híbrido Plug-in`, `Híbrido`).
 
 ### 4.4. Acessibilidade e Ajuda Contextual (*Question Tags*)
 - Todo cartão de KPI (`st.metric`) e título de seção/gráfico deve possuir o parâmetro `help="..."` com explicações técnicas e contextuais para facilitar a experiência do usuário.

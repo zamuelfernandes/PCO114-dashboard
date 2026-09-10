@@ -1,6 +1,6 @@
 # Guia Operacional: Atualização da Base de Dados (PBEV / Inmetro)
 
-Este documento descreve o procedimento operacional padrão (SOP) para atualizar, extrair, padronizar e publicar novos dados de veículos eletrificados no dashboard **Carros Elétricos e Híbridos no Brasil**.
+Este documento descreve o procedimento operacional padrão (SOP) para atualizar, extrair, padronizar e publicar novos dados de veículos 100% elétricos no dashboard **Carros 100% Elétricos no Brasil**.
 
 ---
 
@@ -89,15 +89,11 @@ uv run python scripts/run_pipeline.py --only process
 
 ### Estágio 02: Extração Tabular Bruta (`scripts/02_extract_raw_tables.py`)
 - Inspeciona todas as 9 páginas do documento PDF oficial utilizando `pdfplumber`.
-- Trata células compostas com quebras de linha (`\n`), desmembrando até 3 versões empilhadas por linha física na tabela.
-- Captura métricas de consumo urbano e rodoviário tanto para o modo elétrico quanto para combustão/híbrido.
-- Gera o arquivo intermediário `data/interim/pbev_bruto_extraido.csv` com mais de 390 registros brutos.
+- Captura métricas oficiais de autonomia e consumo urbano e rodoviário equivalente (km/l e MJ/km).
+- Gera o arquivo intermediário `data/interim/pbev_bruto_extraido.csv` com todos os registros brutos extraídos.
 
 ### Estágio 03: Processamento e Padronização (`scripts/03_process_and_standardize.py`)
-- Filtra estritamente veículos com propulsão eletrificada:
-  - `100% Elétrico` (BEV)
-  - `Híbrido Plug-in` (PHEV)
-  - `Híbrido` (HEV convencional)
+- Filtra estritamente veículos 100% elétricos a bateria (`100% Elétrico` / BEV).
 - Normaliza nomes de montadoras (ex: `BYD`, `Audi`, `BMW`, `Volvo`, `GWM`, `Porsche`, `Mercedes-Benz`, etc.).
 - Mapeia as categorias para a nomenclatura oficial do Inmetro (`Sub Compacto`, `Compacto`, `Médio`, `Grande`, `Extra Grande`, `Utilitário Esportivo Compacto`, `Utilitário Esportivo Grande`, `Fora de Estrada Grande`, `Esportivo`, `Comercial`, `Picape`).
 - Converte strings numéricas brasileiras para floats utilizáveis em cálculos analíticos.
@@ -112,12 +108,8 @@ Após rodar o pipeline, verifique o resumo analítico exibido no terminal:
 
 ```
 [INFO] Dataset oficial final salvo com sucesso em: data/carros_eletricos_brasil.csv
-[INFO] Total de modelos únicos padronizados: 384
-[INFO] --- Resumo Analítico por Propulsão ---
-[INFO]   - 100% Elétrico: 172 veículos
-[INFO]   - Híbrido Plug-in: 108 veículos
-[INFO]   - Híbrido: 104 veículos
-[INFO] Veículos 100% Elétricos: Autonomia média = 341.3 km (Min: 156 km, Max: 570 km)
+[INFO] Total de veículos 100% elétricos homologados: 174
+[INFO] Veículos 100% Elétricos: Autonomia média = 372 km (Min: 156 km, Max: 570 km)
 [INFO] Consumo Energético médio (BEVs): 0.62 MJ/km (Melhor: 0.39 MJ/km)
 ```
 

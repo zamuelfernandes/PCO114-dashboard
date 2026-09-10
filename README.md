@@ -1,14 +1,14 @@
-# Carros Elétricos e Híbridos no Brasil — Dashboard PBEV / Inmetro
+# Carros 100% Elétricos no Brasil — Dashboard PBEV / Inmetro
 
-Painel analítico interativo e moderno desenvolvido com **Streamlit**, **Pandas** e **Plotly** para exploração dos dados oficiais do **Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)** sobre veículos eletrificados no Brasil.
+Painel analítico interativo e moderno desenvolvido com **Streamlit**, **Pandas** e **Plotly** para exploração dos dados oficiais do **Programa Brasileiro de Etiquetagem Veicular (PBEV / Inmetro)** sobre veículos 100% elétricos a bateria (BEV) no Brasil.
 
-O repositório possui uma esteira completa e automatizada de dados (ETL) que extrai, padroniza e analisa mais de **380 versões** de veículos **100% elétricos (BEV)**, **híbridos plug-in (PHEV)** e **híbridos convencionais (HEV)** comercializados e homologados pelas montadoras no país.
+O repositório possui uma esteira completa e automatizada de dados (ETL) que extrai, padroniza e analisa mais de **170 versões** de veículos **100% elétricos (BEV)** comercializados e homologados pelas montadoras no país.
 
 ---
 
 ## Principais Recursos
 
-- **Filtro de Propulsão Multisseleção:** Permite isolar unicamente veículos 100% elétricos (BEV), híbridos plug-in (PHEV) ou híbridos convencionais (HEV).
+- **Foco Estrito em 100% Elétricos (BEV):** Análise dedicada a veículos movidos exclusivamente a bateria homologados no PBEV.
 - **Início Otimizado com Top 5:** O painel inicializa pré-selecionado com as 5 principais marcas e 5 categorias por volume, mantendo o carregamento ágil e a barra lateral compacta.
 - **Categorias Oficiais do Inmetro:** Padronização rigorosa segundo as categorias normatizadas do PBEV (`Sub Compacto`, `Compacto`, `Médio`, `Grande`, `Extra Grande`, `Utilitário Esportivo Compacto`, `Utilitário Esportivo Grande`, `Fora de Estrada Grande`, `Esportivo`, `Comercial`, `Picape`).
 - **Métricas Oficiais de Engenharia & Consumo:**
