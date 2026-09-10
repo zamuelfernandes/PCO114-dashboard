@@ -4,8 +4,41 @@ import pandas as pd
 import streamlit as st
 
 
+from src.config import CATEGORY_COLOR_MAP
+
+
+def render_category_legend(df_filtrado: pd.DataFrame):
+    """Renderiza a barra fixa de legenda global de categorias do Inmetro presente na base filtrada."""
+    categorias_presentes = [
+        cat for cat in CATEGORY_COLOR_MAP.keys()
+        if cat in df_filtrado["categoria"].values
+    ]
+    if not categorias_presentes:
+        return
+
+    items_html = []
+    for cat in categorias_presentes:
+        cor = CATEGORY_COLOR_MAP[cat]
+        items_html.append(
+            f'<span style="display: inline-flex; align-items: center; margin-right: 18px; margin-top: 3px; margin-bottom: 3px; font-size: 0.82rem; color: #1e293b; font-weight: 600;">'
+            f'<span style="display: inline-block; width: 11px; height: 11px; border-radius: 50%; background-color: {cor}; margin-right: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.15);"></span>'
+            f'{cat}'
+            f'</span>'
+        )
+
+    legend_html = f"""
+    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 14px; margin-top: 10px; display: flex; flex-wrap: wrap; align-items: center;">
+        <span style="font-size: 0.76rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 14px;">
+            Cores por Categoria:
+        </span>
+        {''.join(items_html)}
+    </div>
+    """
+    st.markdown(legend_html, unsafe_allow_html=True)
+
+
 def render_kpis(df_filtrado: pd.DataFrame):
-    """Renderiza os 4 cartões principais de métricas com dados reais homologados pelo Inmetro."""
+    """Renderiza os 4 cartões principais de métricas com dados reais homologados pelo Inmetro e a legenda global de categorias."""
     col1, col2, col3, col4 = st.columns(4)
 
     total_modelos = len(df_filtrado)
@@ -50,3 +83,6 @@ def render_kpis(df_filtrado: pd.DataFrame):
             value=melhor_autonomia_val,
             help=melhor_autonomia_help,
         )
+
+    # Legenda global de cores por categoria (visível em todas as abas)
+    render_category_legend(df_filtrado)
