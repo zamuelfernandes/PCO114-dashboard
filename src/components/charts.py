@@ -71,8 +71,16 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
 
     fig_scatter.update_layout(
         height=520,
-        showlegend=False,
-        margin=dict(t=30, b=40, l=10, r=10),
+        showlegend=True,
+        legend=dict(
+            title_text="Categoria:",
+            orientation="h",
+            yanchor="bottom",
+            y=1.03,
+            xanchor="left",
+            x=0,
+        ),
+        margin=dict(t=45, b=40, l=10, r=10),
         separators=",.",
         hoverlabel=dict(
             bgcolor="white",
@@ -96,12 +104,12 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
 
 
 def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
-    """Renderiza o gráfico de barras: Quantidade de modelos elétricos por fabricante com cores por categoria."""
+    """Renderiza o gráfico de barras: Quantidade de modelos elétricos por fabricante com divisão por categoria."""
     st.subheader(
         "Modelos Elétricos por Fabricante",
         help=(
             "Ranking de montadoras pela quantidade de veículos 100% elétricos homologados no PBEV. "
-            "As cores identificam as categorias oficiais do Inmetro."
+            "As cores dividem as quantidades por categoria oficial do Inmetro."
         ),
     )
 
@@ -116,8 +124,13 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
         .size()
         .sort_values(ascending=True)
     )
+
+    if total_por_marca.empty:
+        st.info("Nenhum dado de fabricante disponível.")
+        return
+
     ordem_marcas = total_por_marca.index.tolist()
-    max_qtd = int(total_por_marca.max()) if not total_por_marca.empty else 5
+    max_qtd = int(total_por_marca.max())
 
     fig_bar = px.bar(
         modelos_por_marca_cat,
