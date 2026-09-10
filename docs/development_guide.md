@@ -111,10 +111,12 @@ carros-eletricos-dashboard/
 │   ├── config.py                  # Configurações de página, tema, cores e estilos CSS
 │   ├── data.py                    # Carga (@st.cache_data) e filtros interativos
 │   └── components/                # Componentes visuais modulares
-│       ├── sidebar.py             # Filtros interativos na barra lateral (propulsão, marcas, categorias)
-│       ├── kpis.py                # Cartões de métricas (Modelos, Autonomia Média, Consumo MJ/km)
-│       ├── charts.py              # Gráficos Plotly de eficiência, Selo CONPET e classificações PBE
-│       ├── table.py               # Tabela exploratória e exportação CSV
+│       ├── highlights.py          # Destaques do mercado (Rankings populares e treemap)
+│       ├── charts.py              # Gráficos Plotly de autonomia e eficiência
+│       ├── kpis.py                # Cartões de métricas e legenda global de categorias
+│       ├── table.py               # Tabela oficial completa e botão de download CSV
+│       ├── study_guide.py         # Guia explicativo com público, demanda e perguntas
+│       ├── sidebar.py             # Filtros interativos na barra lateral
 │       └── footer.py              # Rodapé com atribuição ao PBEV / Inmetro
 ├── data/
 │   └── carros_eletricos_brasil.csv # Base oficial de dados padronizada (380+ veículos)

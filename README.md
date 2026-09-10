@@ -16,10 +16,11 @@ O repositório possui uma esteira completa e automatizada de dados (ETL) que ext
   - Autonomia elétrica homologada pelo Inmetro ($km$).
   - Rendimento equivalente cidade e estrada ($km/l$).
   - Emissões diretas de $CO_2$ fóssil no escapamento ($g/km$).
-- **Abas Analíticas Dedicadas:**
-  - **Autonomia & Eficiência:** Dispersão interativa (Autonomia vs. Consumo $MJ/km$), ranking de modelos por montadora e dispersão por categoria.
-  - **Selo CONPET & Classificação PBE:** Proporção de veículos certificados com o Selo CONPET de alta eficiência, distribuição de notas A–E e emissões de $CO_2$.
+- **Abas Dedicadas:**
+  - **Destaques do Mercado:** Rankings populares de autonomia, eficiência na cidade (km/l equiv.), composição de mercado e o paradoxo urbano vs. rodoviário.
+  - **Autonomia & Eficiência:** Modelos por fabricante, distribuição de alcance por categoria e dispersão oficial de autonomia vs. consumo energético.
   - **Tabela Oficial Homologada:** Planilha pesquisável completa com botão para download em CSV.
+  - **Entenda o Estudo:** Guia contextual com público-alvo, demandas de informação e as 5 perguntas orientadoras da pesquisa.
 - **Pipeline de Dados Modular em 3 Estágios:** Download oficial online, extração tabular com `pdfplumber` e padronização com `run_pipeline.py`.
 - **Zero Emojis:** Estilização visual exclusivamente com **Google Material Symbols** (`:material/icon_name:`).
 
@@ -99,10 +100,12 @@ carros-eletricos-dashboard/
 │   ├── config.py                  # Configurações de página, paletas de cores e estilos CSS
 │   ├── data.py                    # Carga (@st.cache_data) e filtragem por propulsão/Inmetro
 │   └── components/                # Componentes visuais isolados
-│       ├── sidebar.py             # Filtros interativos (Propulsão, top 5 marcas/categorias, etc.)
-│       ├── kpis.py                # Cartões de métricas (Modelos, Autonomia Média, Consumo MJ/km)
-│       ├── charts.py              # Gráficos Plotly de eficiência, Selo CONPET e classificações PBE
+│       ├── highlights.py          # Destaques do mercado (Rankings populares e treemap)
+│       ├── charts.py              # Gráficos analíticos Plotly de autonomia e eficiência
+│       ├── kpis.py                # Cartões de métricas e legenda global de categorias
 │       ├── table.py               # Tabela oficial completa e botão de download CSV
+│       ├── study_guide.py         # Guia explicativo com público, demanda e perguntas
+│       ├── sidebar.py             # Filtros interativos na barra lateral
 │       └── footer.py              # Rodapé com atribuição ao PBEV / Inmetro
 │
 ├── data/

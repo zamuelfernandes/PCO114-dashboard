@@ -50,10 +50,12 @@ carros-eletricos-dashboard/
 │   │
 │   └── components/                # Componentes isolados da interface
 │       ├── __init__.py
-│       ├── sidebar.py             # Barra lateral com controles de propulsão e filtros Inmetro (top 5 inicial)
-│       ├── kpis.py                # Cartões de métricas principais (KPIs) com question tags
-│       ├── charts.py              # Gráficos analíticos Plotly (Autonomia, Eficiência, Selo CONPET, PBE)
+│       ├── highlights.py          # Destaques do mercado com rankings populares e treemap
+│       ├── charts.py              # Gráficos analíticos Plotly de autonomia e eficiência
+│       ├── kpis.py                # Cartões de métricas principais e legenda global de categorias
 │       ├── table.py               # Tabela exploratória detalhada e exportação CSV
+│       ├── study_guide.py         # Guia contextual com público-alvo, demandas e perguntas
+│       ├── sidebar.py             # Barra lateral com controles de filtros Inmetro
 │       └── footer.py              # Rodapé institucional da aplicação com fonte Inmetro
 │
 ├── data/
