@@ -31,27 +31,36 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
         st.info("Nenhum dado disponível para o ranking de autonomia.")
         return
 
-    # Cria rótulo amigável combinando Marca, Modelo e Versão
-    df_top["carro"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
     # Ordena ascendente para a barra maior ficar no topo do gráfico horizontal
-    df_top = df_top.sort_values(by="autonomia_inmetro_km", ascending=True)
+    df_top = df_top.sort_values(by="autonomia_inmetro_km", ascending=True).reset_index(drop=True)
+
+    # Rótulo único por homologação: modelo + categoria (evita barras duplicadas na mesma linha)
+    df_top["carro_nome"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
+    df_top["carro_label"] = (
+        df_top["carro_nome"]
+        + "<br><span style='font-size:10px;color:#64748b'>"
+        + df_top["categoria"]
+        + "</span>"
+    )
+    df_top["carro_ordem"] = df_top.index
     df_top["rotulo_texto"] = df_top["autonomia_inmetro_km"].apply(lambda v: f"<b>{v:.0f} km</b>")
 
     fig = px.bar(
         df_top,
         x="autonomia_inmetro_km",
-        y="carro",
+        y="carro_ordem",
         orientation="h",
         text="rotulo_texto",
+        color="categoria",
+        color_discrete_map=CATEGORY_COLOR_MAP,
         custom_data=["marca", "modelo", "versao", "categoria", "autonomia_inmetro_km"],
-        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro": ""},
+        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro_ordem": "", "categoria": "Categoria"},
         template="plotly_white",
     )
 
     max_auto = df_top["autonomia_inmetro_km"].max()
 
     fig.update_traces(
-        marker_color="#2563eb",
         cliponaxis=False,
         textposition="outside",
         hovertemplate=(
@@ -63,8 +72,7 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
     )
 
     fig.update_layout(
-        height=420,
-        barmode="group",
+        height=480,
         margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
@@ -73,7 +81,13 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
             range=[0, max_auto * 1.20],
             gridcolor="#f1f5f9",
         ),
-        yaxis=dict(title="", tickfont=dict(size=11, color="#0f172a")),
+        yaxis=dict(
+            title="",
+            tickmode="array",
+            tickvals=df_top["carro_ordem"],
+            ticktext=df_top["carro_label"],
+            tickfont=dict(size=11, color="#0f172a"),
+        ),
         separators=",.",
     )
 
@@ -99,25 +113,36 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
         st.info("Nenhum dado disponível para o ranking de eficiência.")
         return
 
-    df_top["carro"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
-    df_top = df_top.sort_values(by="km_l_equivalente_cidade", ascending=True)
+    # Ordena ascendente para a barra maior ficar no topo do gráfico horizontal
+    df_top = df_top.sort_values(by="km_l_equivalente_cidade", ascending=True).reset_index(drop=True)
+
+    # Rótulo único por homologação: modelo + categoria (evita barras duplicadas na mesma linha)
+    df_top["carro_nome"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
+    df_top["carro_label"] = (
+        df_top["carro_nome"]
+        + "<br><span style='font-size:10px;color:#64748b'>"
+        + df_top["categoria"]
+        + "</span>"
+    )
+    df_top["carro_ordem"] = df_top.index
     df_top["rotulo_texto"] = df_top["km_l_equivalente_cidade"].apply(lambda v: f"<b>{v:.1f} km/l</b>")
 
     fig = px.bar(
         df_top,
         x="km_l_equivalente_cidade",
-        y="carro",
+        y="carro_ordem",
         orientation="h",
         text="rotulo_texto",
+        color="categoria",
+        color_discrete_map=CATEGORY_COLOR_MAP,
         custom_data=["marca", "modelo", "versao", "categoria", "km_l_equivalente_cidade", "consumo_energetico_mj_km"],
-        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro": ""},
+        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro_ordem": "", "categoria": "Categoria"},
         template="plotly_white",
     )
 
     max_eff = df_top["km_l_equivalente_cidade"].max()
 
     fig.update_traces(
-        marker_color="#059669",
         cliponaxis=False,
         textposition="outside",
         hovertemplate=(
@@ -130,8 +155,7 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
     )
 
     fig.update_layout(
-        height=420,
-        barmode="group",
+        height=480,
         margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
@@ -140,7 +164,13 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
             range=[0, max_eff * 1.20],
             gridcolor="#f1f5f9",
         ),
-        yaxis=dict(title="", tickfont=dict(size=11, color="#0f172a")),
+        yaxis=dict(
+            title="",
+            tickmode="array",
+            tickvals=df_top["carro_ordem"],
+            ticktext=df_top["carro_label"],
+            tickfont=dict(size=11, color="#0f172a"),
+        ),
         separators=",.",
     )
 
