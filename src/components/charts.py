@@ -26,6 +26,8 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
     # Garante tamanho positivo para as bolhas
     df_plot["tamanho_bolha"] = df_plot["km_l_equivalente_cidade"].fillna(20.0).clip(lower=10.0, upper=70.0)
 
+    st.caption(":material/star: **Questão Central:** Modelos no topo e à esquerda entregam a melhor relação de longo alcance com menor gasto de energia.")
+
     fig_scatter = px.scatter(
         df_plot,
         x="consumo_energetico_mj_km",
@@ -50,7 +52,6 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
             "autonomia_inmetro_km": "Autonomia Oficial (km)",
             "categoria": "Categoria Inmetro",
         },
-        title="Eficiência Energética: Autonomia Inmetro vs. Consumo (MJ/km)",
         template="plotly_white",
     )
 
@@ -70,6 +71,7 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
 
     fig_scatter.update_layout(
         height=520,
+        margin=dict(t=35, b=40, l=10, r=10),
         separators=",.",
         hoverlabel=dict(
             bgcolor="white",
@@ -132,7 +134,6 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
         color_discrete_map=CATEGORY_COLOR_MAP,
         orientation="h",
         labels={"quantidade": "Qtd. de Modelos", "marca": "Fabricante", "categoria": "Categoria"},
-        title="Quantidade de Versões Elétricas por Montadora",
         template="plotly_white",
         category_orders={"marca": ordem_marcas},
     )
@@ -156,7 +157,7 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
     fig_bar.update_layout(
         height=altura,
         showlegend=False,
-        margin=dict(l=10, r=40, t=40, b=30),
+        margin=dict(l=10, r=40, t=10, b=30),
         hoverlabel=dict(
             bgcolor="white",
             font_size=12,
@@ -197,13 +198,13 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
             "categoria": "Categoria Inmetro",
             "autonomia_inmetro_km": "Autonomia Oficial (km)",
         },
-        title="Autonomia Inmetro por Categoria de Carroceria",
         template="plotly_white",
     )
 
     fig_box.update_layout(
         height=altura,
         showlegend=False,
+        margin=dict(t=10, b=30, l=10, r=10),
         separators=",.",
         yaxis=dict(
             title="Autonomia Homologada (km)",
@@ -252,11 +253,10 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             hole=0.55,
             color="Selo CONPET",
             color_discrete_map={"Sim": "#00CC96", "Não": "#cbd5e1"},
-            title="Proporção com Selo CONPET",
             template="plotly_white",
         )
         fig_donut.update_traces(textposition="inside", textinfo="percent+label")
-        fig_donut.update_layout(height=380, showlegend=True)
+        fig_donut.update_layout(height=380, showlegend=True, margin=dict(t=10, b=10))
         st.plotly_chart(fig_donut, width="stretch", config=PLOTLY_CONFIG_PT_BR)
 
     with col2:
@@ -269,10 +269,9 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             y="Quantidade",
             color="Nota PBE",
             color_discrete_map={"A": "#00CC96", "B": "#636EFA", "C": "#FFA15A", "D": "#FF6692", "E": "#EF553B"},
-            title="Distribuição das Classificações PBE (Geral)",
             template="plotly_white",
         )
-        fig_pbe.update_layout(height=380, showlegend=False, xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]))
+        fig_pbe.update_layout(height=380, showlegend=False, margin=dict(t=10, b=30), xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]))
         st.plotly_chart(fig_pbe, width="stretch", config=PLOTLY_CONFIG_PT_BR)
 
     # Gráfico de Rendimento Equivalente: Cidade vs Estrada
@@ -293,7 +292,6 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             "km_l_equivalente_cidade": "Equivalente Cidade (km/l)",
             "categoria": "Categoria Inmetro",
         },
-        title="Rendimento Equivalente Urbano vs. Rodoviário (Tamanho da Bolha = Autonomia)",
         template="plotly_white",
     )
     fig_equiv.update_traces(
@@ -308,5 +306,5 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             "<extra></extra>"
         )
     )
-    fig_equiv.update_layout(height=450, separators=",.")
+    fig_equiv.update_layout(height=450, margin=dict(t=10, b=30), separators=",.")
     st.plotly_chart(fig_equiv, width="stretch", config=PLOTLY_CONFIG_PT_BR)
