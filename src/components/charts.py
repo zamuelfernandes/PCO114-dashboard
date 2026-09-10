@@ -71,7 +71,8 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
 
     fig_scatter.update_layout(
         height=520,
-        margin=dict(t=35, b=40, l=10, r=10),
+        showlegend=False,
+        margin=dict(t=15, b=40, l=10, r=10),
         separators=",.",
         hoverlabel=dict(
             bgcolor="white",
@@ -88,14 +89,6 @@ def render_scatter_chart(df_filtrado: pd.DataFrame):
             title="Autonomia Homologada Inmetro (km)",
             ticksuffix=" km",
             gridcolor="#f1f5f9",
-        ),
-        legend=dict(
-            title_text="Categoria Inmetro",
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1,
         ),
     )
 
@@ -225,8 +218,6 @@ def render_box_chart(df_filtrado: pd.DataFrame, altura: int):
 
 def render_charts(df_filtrado: pd.DataFrame):
     """Renderiza a aba principal de gráficos de autonomia e eficiência."""
-    render_scatter_chart(df_filtrado)
-
     col_g1, col_g2 = st.columns(2)
     qtd_marcas = df_filtrado["marca"].nunique()
     altura_graficos = max(450, qtd_marcas * 26 + 80)
@@ -236,6 +227,10 @@ def render_charts(df_filtrado: pd.DataFrame):
 
     with col_g2:
         render_box_chart(df_filtrado, altura_graficos)
+
+    st.markdown("---")
+
+    render_scatter_chart(df_filtrado)
 
 
 def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
@@ -256,7 +251,19 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             template="plotly_white",
         )
         fig_donut.update_traces(textposition="inside", textinfo="percent+label")
-        fig_donut.update_layout(height=380, showlegend=True, margin=dict(t=10, b=10))
+        fig_donut.update_layout(
+            height=380,
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1,
+                title_text="Selo CONPET:",
+            ),
+            margin=dict(t=10, b=10),
+        )
         st.plotly_chart(fig_donut, width="stretch", config=PLOTLY_CONFIG_PT_BR)
 
     with col2:
@@ -271,7 +278,20 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             color_discrete_map={"A": "#00CC96", "B": "#636EFA", "C": "#FFA15A", "D": "#FF6692", "E": "#EF553B"},
             template="plotly_white",
         )
-        fig_pbe.update_layout(height=380, showlegend=False, margin=dict(t=10, b=30), xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]))
+        fig_pbe.update_layout(
+            height=380,
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1,
+                title_text="Nota PBE:",
+            ),
+            margin=dict(t=10, b=30),
+            xaxis=dict(categoryorder="array", categoryarray=["A", "B", "C", "D", "E", "Sem Nota"]),
+        )
         st.plotly_chart(fig_pbe, width="stretch", config=PLOTLY_CONFIG_PT_BR)
 
     # Gráfico de Rendimento Equivalente: Cidade vs Estrada
@@ -306,5 +326,5 @@ def render_conpet_and_pbe_tab(df_filtrado: pd.DataFrame):
             "<extra></extra>"
         )
     )
-    fig_equiv.update_layout(height=450, margin=dict(t=10, b=30), separators=",.")
+    fig_equiv.update_layout(height=450, showlegend=False, margin=dict(t=10, b=30), separators=",.")
     st.plotly_chart(fig_equiv, width="stretch", config=PLOTLY_CONFIG_PT_BR)
