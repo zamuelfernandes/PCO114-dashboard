@@ -22,6 +22,7 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
     df_top = (
         df_filtrado.dropna(subset=["autonomia_inmetro_km"])
         .sort_values(by="autonomia_inmetro_km", ascending=False)
+        .drop_duplicates(subset=["marca", "modelo", "versao"])
         .head(10)
         .copy()
     )
@@ -34,29 +35,36 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
     df_top["carro"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
     # Ordena ascendente para a barra maior ficar no topo do gráfico horizontal
     df_top = df_top.sort_values(by="autonomia_inmetro_km", ascending=True)
+    df_top["rotulo_texto"] = df_top["autonomia_inmetro_km"].apply(lambda v: f"<b>{v:.0f} km</b>")
 
     fig = px.bar(
         df_top,
         x="autonomia_inmetro_km",
         y="carro",
         orientation="h",
-        color="categoria",
-        color_discrete_map=CATEGORY_COLOR_MAP,
-        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro": "", "categoria": "Categoria"},
+        text="rotulo_texto",
+        custom_data=["marca", "modelo", "versao", "categoria", "autonomia_inmetro_km"],
+        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro": ""},
         template="plotly_white",
     )
 
     max_auto = df_top["autonomia_inmetro_km"].max()
 
     fig.update_traces(
+        marker_color="#2563eb",
         cliponaxis=False,
-        text=df_top["autonomia_inmetro_km"].apply(lambda v: f"<b>{v:.0f} km</b>"),
         textposition="outside",
-        hovertemplate="<b>%{y}</b><br>Autonomia: <b>%{x:.0f} km</b><br>Categoria: %{fullData.name}<extra></extra>",
+        hovertemplate=(
+            "<b>%{customdata[0]} %{customdata[1]}</b> (%{customdata[2]})<br>"
+            "Categoria: %{customdata[3]}<br>"
+            "Autonomia Oficial: <b>%{customdata[4]:.0f} km</b>"
+            "<extra></extra>"
+        ),
     )
 
     fig.update_layout(
         height=420,
+        barmode="group",
         margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
@@ -82,6 +90,7 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
     df_top = (
         df_filtrado.dropna(subset=["km_l_equivalente_cidade"])
         .sort_values(by="km_l_equivalente_cidade", ascending=False)
+        .drop_duplicates(subset=["marca", "modelo", "versao"])
         .head(10)
         .copy()
     )
@@ -92,30 +101,37 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
 
     df_top["carro"] = df_top["marca"] + " " + df_top["modelo"] + " (" + df_top["versao"] + ")"
     df_top = df_top.sort_values(by="km_l_equivalente_cidade", ascending=True)
+    df_top["rotulo_texto"] = df_top["km_l_equivalente_cidade"].apply(lambda v: f"<b>{v:.1f} km/l</b>")
 
     fig = px.bar(
         df_top,
         x="km_l_equivalente_cidade",
         y="carro",
         orientation="h",
-        color="categoria",
-        color_discrete_map=CATEGORY_COLOR_MAP,
-        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro": "", "categoria": "Categoria"},
+        text="rotulo_texto",
+        custom_data=["marca", "modelo", "versao", "categoria", "km_l_equivalente_cidade", "consumo_energetico_mj_km"],
+        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro": ""},
         template="plotly_white",
     )
 
     max_eff = df_top["km_l_equivalente_cidade"].max()
 
     fig.update_traces(
+        marker_color="#059669",
         cliponaxis=False,
-        text=df_top["km_l_equivalente_cidade"].apply(lambda v: f"<b>{v:.1f} km/l</b>"),
         textposition="outside",
-        hovertemplate="<b>%{y}</b><br>Rendimento Cidade: <b>%{x:.1f} km/l</b><br>Consumo: <b>%{customdata[0]:.2f} MJ/km</b><extra></extra>",
-        customdata=df_top[["consumo_energetico_mj_km"]].values,
+        hovertemplate=(
+            "<b>%{customdata[0]} %{customdata[1]}</b> (%{customdata[2]})<br>"
+            "Categoria: %{customdata[3]}<br>"
+            "Rendimento Cidade: <b>%{customdata[4]:.1f} km/l</b><br>"
+            "Consumo Oficial: <b>%{customdata[5]:.2f} MJ/km</b>"
+            "<extra></extra>"
+        ),
     )
 
     fig.update_layout(
         height=420,
+        barmode="group",
         margin=dict(l=10, r=60, t=35, b=30),
         showlegend=False,
         xaxis=dict(
@@ -171,7 +187,7 @@ def render_category_treemap(df_filtrado: pd.DataFrame):
 def render_popular_city_vs_road(df_filtrado: pd.DataFrame):
     """Renderiza a quebra de expectativa: comparativo Cidade vs. Estrada nos modelos mais eficientes."""
     st.subheader(
-        "O Paradoxo Elétrico: Cidade vs. Estrada",
+        "Cidade vs. Estrada",
         help="Ao contrário dos carros a gasolina, os elétricos rendem muito mais na cidade graças à regeneração de energia nas frenagens.",
     )
 
