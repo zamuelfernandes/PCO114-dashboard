@@ -9,13 +9,15 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Added
 
-- Nova aba "Entenda o Estudo" estruturando o Público-Alvo, a Demanda de Informação e as 5 Perguntas Orientadoras da pesquisa com linguagem acessível, cards interativos e destaque pré-atentivo para a Questão Central
+- Nova aba inicial "Destaques do Mercado" com 4 visualizações populares de fácil entendimento: Top 10 Autonomia, Top 10 Eficiência Urbana (km/l equivalente), Treemap de Categorias oficiais e Comparativo Cidade vs. Estrada nos modelos mais econômicos
+- Nova aba final "Entenda o Estudo" estruturando o Público-Alvo, a Demanda de Informação e as 5 Perguntas Orientadoras da pesquisa com linguagem acessível, cards interativos e destaque pré-atentivo para a Questão Central
 - Marcação explícita no gráfico de dispersão indicando que ele responde à Questão Central da pesquisa
 
 ### Changed
 
-- Remoção dos títulos duplicados menores do Plotly em todos os 6 gráficos analíticos, mantendo apenas os títulos principais e ajuda contextual do Streamlit
+- Remoção dos títulos duplicados menores do Plotly em todos os gráficos analíticos, mantendo apenas os títulos principais e ajuda contextual do Streamlit
 - Ajuste das margens superiores dos gráficos para maximizar o aproveitamento de espaço visual (data-ink ratio)
+- Simplificação e humanização das considerações conceituais na aba "Entenda o Estudo", conectando diretamente as perguntas com a aba de Destaques e as abas analíticas
 - Remoção de todas as menções residuais a veículos híbridos na interface (rodapé), código de configuração e documentações, consolidando o escopo estritamente em veículos 100% elétricos a bateria (BEV)
 
 ## [1.1.0] - 09/09/2026
