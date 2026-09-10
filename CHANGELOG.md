@@ -5,6 +5,19 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] - 10/09/2026
+
+### Added
+
+- Nova aba "Entenda o Estudo" estruturando o Público-Alvo, a Demanda de Informação e as 5 Perguntas Orientadoras da pesquisa com linguagem acessível, cards interativos e destaque pré-atentivo para a Questão Central
+- Marcação explícita no gráfico de dispersão indicando que ele responde à Questão Central da pesquisa
+
+### Changed
+
+- Remoção dos títulos duplicados menores do Plotly em todos os 6 gráficos analíticos, mantendo apenas os títulos principais e ajuda contextual do Streamlit
+- Ajuste das margens superiores dos gráficos para maximizar o aproveitamento de espaço visual (data-ink ratio)
+- Remoção de todas as menções residuais a veículos híbridos na interface (rodapé), código de configuração e documentações, consolidando o escopo estritamente em veículos 100% elétricos a bateria (BEV)
+
 ## [1.1.0] - 09/09/2026
 
 ### Added
