@@ -28,7 +28,7 @@ def render_study_guide():
             st.markdown("#### :material/groups: Para quem é este painel? (Público-Alvo)")
             st.markdown(
                 """
-                - **Compradores e motoristas:** Pessoas que têm curiosidade em ter um elétrico, mas têm receio de ficar sem bateria no caminho (*"ansiedade de autonomia"*) ou querem saber se a economia na tomada é real.
+                - **Compradores e motoristas:** Pessoas que têm curiosidade em ter um elétrico, mas têm receio de ficar sem bateria no caminho ou querem saber se a economia na tomada é real.
                 - **Empresas e frotistas:** Quem precisa decidir na ponta do lápis se compensa trocar carros a combustão por elétricos para cortar despesas e emissões.
                 - **Alunos e curiosos:** Quem quer ver a fotografia atual do mercado automotivo nacional e como novas montadoras estão desafiando as marcas tradicionais.
                 """
@@ -94,7 +94,7 @@ def render_study_guide():
             *Diferente dos carros comuns a combustão (que gastam mais no trânsito), o elétrico recarrega a bateria toda vez que freia. 
             Qual é o tamanho real dessa vantagem urbana no dia a dia dos modelos à venda no Brasil?*
             
-            :material/arrow_forward: *Veja a resposta direta no gráfico **O Paradoxo Elétrico: Cidade vs. Estrada** na aba **Destaques do Mercado**.*
+            :material/arrow_forward: *Veja a resposta direta no gráfico **Cidade vs. Estrada** na aba **Destaques do Mercado**.*
             """
         )
 
