@@ -14,8 +14,10 @@ def render_study_guide():
         help="Contexto do estudo, público-alvo, demandas de informação e as perguntas que guiaram a criação das visualizações.",
     )
     st.markdown(
-        "Este painel foi desenvolvido para transformar dados técnicos e complexos de testes oficiais do **Inmetro (PBEV)** "
-        "em respostas práticas, diretas e visuais para quem quer entender a realidade dos carros 100% elétricos no Brasil."
+        "Este painel foi criado para responder de forma simples às principais dúvidas sobre carros elétricos no Brasil. "
+        "Seguindo as boas práticas da disciplina de **Visualização de Informação**, organizamos a experiência em duas etapas: "
+        "primeiro os **Destaques do Mercado** (com respostas rápidas e rankings populares), e depois as **Abas Analíticas** "
+        "(para quem quiser mergulhar nos detalhes técnicos oficiais do Inmetro)."
     )
 
     # 1. Público-Alvo e Demanda de Informação em duas colunas elegantes
@@ -26,20 +28,20 @@ def render_study_guide():
             st.markdown("#### :material/groups: Para quem é este painel? (Público-Alvo)")
             st.markdown(
                 """
-                - **Motoristas e futuros compradores:** Pessoas que pensam em comprar um carro elétrico, mas têm receio da bateria acabar no caminho (*"ansiedade de autonomia"*) ou dúvidas se a economia na tomada realmente compensa.
-                - **Empresas e gestores de frota:** Profissionais que precisam decidir se vale a pena substituir veículos a combustão por elétricos, buscando cortar gastos com combustível e reduzir emissões de carbono.
-                - **Curiosos e entusiastas:** Qualquer pessoa interessada em acompanhar como a tecnologia de carros elétricos está evoluindo e quais marcas estão trazendo novidades ao Brasil.
+                - **Compradores e motoristas:** Pessoas que têm curiosidade em ter um elétrico, mas têm receio de ficar sem bateria no caminho (*"ansiedade de autonomia"*) ou querem saber se a economia na tomada é real.
+                - **Empresas e frotistas:** Quem precisa decidir na ponta do lápis se compensa trocar carros a combustão por elétricos para cortar despesas e emissões.
+                - **Alunos e curiosos:** Quem quer ver a fotografia atual do mercado automotivo nacional e como novas montadoras estão desafiando as marcas tradicionais.
                 """
             )
 
     with col_dem:
         with st.container(border=True):
-            st.markdown("#### :material/manage_search: O que essas pessoas querem saber? (Demanda de Informação)")
+            st.markdown("#### :material/manage_search: O que as pessoas querem saber? (Demanda de Informação)")
             st.markdown(
                 """
-                - **A verdade além do comercial:** Descobrir quanto o carro realmente anda com uma carga completa em testes oficiais e padronizados, sem depender apenas das promessas das montadoras.
-                - **O equilíbrio ideal:** Identificar quais modelos andam muito gastando pouca energia, evitando carros que têm boa autonomia apenas porque carregam baterias gigantescas e pesadas.
-                - **Urbano vs. Estrada:** Entender na prática como o trânsito da cidade afeta a bateria em comparação com viagens rodoviárias.
+                - **A vida real além da propaganda:** Quanto cada modelo realmente percorre com uma bateria cheia em testes padronizados e oficiais, sem promessas vazias.
+                - **O campeão do custo-benefício:** Quais carros conseguem andar muito gastando o mínimo de eletricidade, sem precisar carregar baterias excessivamente pesadas.
+                - **Cidade contra estrada:** Entender na prática por que o elétrico é imbatível no anda-e-para urbano e como ele se comporta em rodovias.
                 """
             )
 
@@ -58,7 +60,7 @@ def render_study_guide():
             *Ter uma bateria enorme garante rodar muitos quilômetros, mas deixa o carro pesado e "gastão". 
             Existe um ponto de equilíbrio ideal? Quais modelos no Brasil conseguem entregar bastante autonomia sem desperdiçar energia na tomada?*
             
-            :material/arrow_forward: *Veja a resposta no gráfico de **Autonomia vs. Consumo (Dispersão)** na aba **Autonomia & Eficiência**.*
+            :material/arrow_forward: *Veja a resposta rápida nos rankings da aba **Destaques do Mercado** e a correlação técnica completa no gráfico de **Autonomia vs. Consumo** na aba **Autonomia & Eficiência**.*
             """
         )
 
@@ -70,7 +72,7 @@ def render_study_guide():
             *Carros pequenos (compactos urbanos) andam muito menos que os SUVs grandalhões de luxo? 
             Existem modelos que surpreendem e superam a média de alcance da sua categoria?*
             
-            :material/arrow_forward: *Veja a resposta no gráfico de **Distribuição por Categoria (Boxplot)** na aba **Autonomia & Eficiência**.*
+            :material/arrow_forward: *Veja a divisão no **Treemap de Categorias** (aba **Destaques**) e a dispersão real no **Boxplot por Categoria** (aba **Autonomia & Eficiência**).*
             """
         )
 
@@ -92,7 +94,7 @@ def render_study_guide():
             *Diferente dos carros comuns a combustão (que gastam mais no trânsito), o elétrico recarrega a bateria toda vez que freia. 
             Qual é o tamanho real dessa vantagem urbana no dia a dia dos modelos à venda no Brasil?*
             
-            :material/arrow_forward: *Veja a resposta no gráfico **Rendimento Urbano vs. Rodoviário** na aba **Selo CONPET & Classificação PBE**.*
+            :material/arrow_forward: *Veja a resposta direta no gráfico **O Paradoxo Elétrico: Cidade vs. Estrada** na aba **Destaques do Mercado** e a dispersão na aba **Selo CONPET & Classificação PBE**.*
             """
         )
 
