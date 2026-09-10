@@ -51,10 +51,9 @@ def render_top_autonomy(df_filtrado: pd.DataFrame):
         y="carro_ordem",
         orientation="h",
         text="rotulo_texto",
-        color="categoria",
-        color_discrete_map=CATEGORY_COLOR_MAP,
+        color_discrete_sequence=["#636EFA"],
         custom_data=["marca", "modelo", "versao", "categoria", "autonomia_inmetro_km"],
-        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro_ordem": "", "categoria": "Categoria"},
+        labels={"autonomia_inmetro_km": "Autonomia Oficial (km)", "carro_ordem": ""},
         template="plotly_white",
     )
 
@@ -133,10 +132,9 @@ def render_top_efficiency(df_filtrado: pd.DataFrame):
         y="carro_ordem",
         orientation="h",
         text="rotulo_texto",
-        color="categoria",
-        color_discrete_map=CATEGORY_COLOR_MAP,
+        color_discrete_sequence=["#636EFA"],
         custom_data=["marca", "modelo", "versao", "categoria", "km_l_equivalente_cidade", "consumo_energetico_mj_km"],
-        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro_ordem": "", "categoria": "Categoria"},
+        labels={"km_l_equivalente_cidade": "Rendimento Cidade (km/l equiv.)", "carro_ordem": ""},
         template="plotly_white",
     )
 
