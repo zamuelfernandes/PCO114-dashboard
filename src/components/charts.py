@@ -162,8 +162,16 @@ def render_bar_chart(df_filtrado: pd.DataFrame, altura: int):
 
     fig_bar.update_layout(
         height=altura,
-        showlegend=False,
-        margin=dict(l=10, r=40, t=30, b=30),
+        showlegend=True,
+        legend=dict(
+            title_text="Categoria:",
+            orientation="h",
+            yanchor="bottom",
+            y=1.03,
+            xanchor="left",
+            x=0,
+        ),
+        margin=dict(l=10, r=40, t=50, b=30),
         hoverlabel=dict(
             bgcolor="white",
             font_size=12,
